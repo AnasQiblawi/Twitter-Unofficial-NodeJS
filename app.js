@@ -49,6 +49,7 @@ app.get('/profile/:name', function (req, res) {
         if (!error && response.statusCode == 200) {
             const userPage = body;
             const dom  = new JSDOM(userPage);
+            if (document.getElementsByClassName('flex-module error-page clearfix')[0]) {
             // Default info
             var twitter = {
                 name: name,
@@ -60,8 +61,9 @@ app.get('/profile/:name', function (req, res) {
                 followers: '-',
                 likes: '-'
             };
+            } else {
             // New info
-            twitter = {
+            var twitter = {
                 name: dom.window.document.getElementsByClassName('ProfileHeaderCard-nameLink')[0].textContent,
                 account: dom.window.document.getElementsByClassName('u-linkComplex-target')[0].textContent,
                 avatar: dom.window.document.getElementsByClassName('ProfileAvatar-image')[0].src,
@@ -71,6 +73,7 @@ app.get('/profile/:name', function (req, res) {
                 followers: dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent,
                 likes: dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
             }
+            };
             console.log(twitter);
             console.log(res.statusCode);
             res.render(__dirname + '/pages/profile', twitter);

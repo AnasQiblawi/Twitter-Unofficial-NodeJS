@@ -13,8 +13,18 @@ git add .
 git commit -am "make it better"
 git push heroku master
 
-
+-----------------------
 // update
 git add .
 git commit -m 'update my app'
+git push heroku master
+
+// Update
+$ git fetch aq-twito master
+$ git reset --hard aq-twito/master
+$ git push heroku master --force
+
+// Update
+git add .
+git commit -m "updated the header and footer"
 git push heroku master
