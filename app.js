@@ -7,8 +7,9 @@ const {JSDOM} = jsdom;
 // =====================================================
 
 // Settings --------------------------------------------
-app.listen(80);
-// app.listen(process.env.PORT);
+// app.listen(80);
+// app.listen(process.env.PORT);;
+app.listen(process.env.PORT || 80);
 app.set('view engine', 'ejs');
 console.log('Server is running on port 80 .');
 //
