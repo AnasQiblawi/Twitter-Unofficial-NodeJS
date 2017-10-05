@@ -7,8 +7,8 @@ const {JSDOM} = jsdom;
 // =====================================================
 
 // Settings --------------------------------------------
-// app.listen(80);
-app.listen(process.env.PORT);
+app.listen(80);
+// app.listen(process.env.PORT);
 app.set('view engine', 'ejs');
 console.log('Server is running on port 80 .');
 //
@@ -49,7 +49,7 @@ app.get('/profile/:name', function (req, res) {
         if (!error && response.statusCode == 200) {
             const userPage = body;
             const dom  = new JSDOM(userPage);
-            if (document.getElementsByClassName('flex-module error-page clearfix')[0]) {
+            if (dom.window.document.getElementsByClassName('flex-module error-page clearfix')[0]) {
             // Default info
             var twitter = {
                 name: name,
