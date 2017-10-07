@@ -7,7 +7,7 @@
 
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    
+
 	<title>Twitter</title>
 	<!-- Alert Design -->
 	<script src="https://sweetalert.js.org/assets/sweetalert/sweetalert.min.js"></script>
@@ -71,12 +71,17 @@ strong {
 /* ---------- Container ---------- */
 
 #Container {
-	margin: 50px auto;
+	margin: 10% auto;
 	width: 350px;
-	padding-top: 8%;
+	/*background: lightgray;*/
+    /*border: 1px solid lightgray ;*/
+    border-radius: 7px;
+    max-width: 357px;
+    padding: 12px;
+
 }
 
-form fieldset input[type="text"], input[type="password"] {
+form fieldset input[type="text"], input[type="password"], input[type="search"] {
 	background: #e5e5e5;
 	border: none;
 	border-radius: 3px;
@@ -198,7 +203,7 @@ form fieldset a:hover { text-decoration: underline; }
 
 			<fieldset>
 
-				<p><input type="text" required id="Username" value="Username." onBlur="if(this.value.trim()=='')this.value='Username.'" onFocus="if(this.value=='Username.')this.value='' " class=""></p> <!-- JS because of IE support; better: placeholder="Username" -->
+				<p><input type="search" required id="Username" value="Username." onBlur="if(this.value.trim()=='')this.value='Username.'" onFocus="if(this.value=='Username.')this.value='' " class=""></p> <!-- JS because of IE support; better: placeholder="Username" -->
 
 
 				<p><input type="submit" id="" onclick="search()" value="Search" class="" ></p>
@@ -217,10 +222,10 @@ form fieldset a:hover { text-decoration: underline; }
 
 	<script>
 		function search() {
-			var Username = document.getElementById('Username').value.trim();
+			var Username = document.getElementById('Username').value.split(' ').join('');
 			if (Username != 'Username.' && Username != '' ) {
 			document.getElementById('loader').innerHTML = '<i class="fa fa-circle-o-notch fa-spin rotar"></i>Loading'
-			location.href = location.origin + '/twitter/' + Username;
+			location.href = location.origin + '/twitter/' + Username.toLowerCase();
 		} else { swal('Oops', 'Something went wrong!', 'error') }
 		}
 	</script>
