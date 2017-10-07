@@ -56,130 +56,124 @@ app.get('/twitter/:name', function (req, res) {
                 // Suspended Account
                 var twitter = {
                     available: 1,
-                    // name: name,
-                    // account: name.toLowerCase().split(' ').join(''),
-                    name: 'Suspended Account',
-                    account: req.params.name.toLowerCase().split(' ').join(''),
+                    suspended: 1,
                     user_id: '',
+                    name: '',
+                    account: req.params.name.toLowerCase().split(' ').join(''),
+                    verified: '',
+                    Bussnis_state: '',
+                    created_at: '',
+                    Loacation: '',
+                    website: '',
+                    description: '',
+                    tweets: '',
+                    tweets_str: '',
+                    following: '',
+                    following_str: '',
+                    followers: '',
+                    followers_str: '',
+                    likes: '',
+                    likes_str: '',
                     avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
                     banner: '',
-                    tweets: '',
-                    following: '',
-                    followers: '',
-                    likes: ''
+                    background_image: '',
+                    background_color: ''
                 };
             } else {
-                // New info
-                var name;
-                if (dom.window.document.getElementsByClassName('ProfileHeaderCard-nameLink')[0]) {
-                    name = dom.window.document.getElementsByClassName('ProfileHeaderCard-nameLink')[0].textContent
-                } else {
-                    name = ''
-                }
-                ;
-                var account;
-                if (dom.window.document.getElementsByClassName('u-linkComplex-target')[0]) {
-                    account = dom.window.document.getElementsByClassName('u-linkComplex-target')[0].textContent
-                } else {
-                    account = ''
-                }
-                ;
-                var user_id;
-                if (dom.window.document.getElementById('init-data')) {
-                    user_id = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user.id_str
-                } else {
-                    user_id = ''
-                }
-                ;
-                var avatar;
-                if (dom.window.document.getElementsByClassName('ProfileAvatar-image')[0]) {
-                    avatar = dom.window.document.getElementsByClassName('ProfileAvatar-image')[0].src
-                } else {
-                    avatar = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg'
-                }
-                ;
-                var banner;
-                if (dom.window.document.querySelector('.ProfileCanopy-headerBg img')) {
-                    banner = dom.window.document.querySelector('.ProfileCanopy-headerBg img').src
-                } else {
-                    banner = ''
-                }
-                ;
-                var tweets;
+                // Active Account 
+                var profile_user = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user
+
+
+                var tweets_str;
                 if (dom.window.document.getElementsByClassName('ProfileNav-value')[0]) {
-                    tweets = dom.window.document.getElementsByClassName('ProfileNav-value')[0].textContent
+                    tweets_str = dom.window.document.getElementsByClassName('ProfileNav-value')[0].textContent
                 } else {
-                    tweets = ''
+                    tweets_str = ''
                 }
                 ;
-                var following;
+                var following_str;
                 if (dom.window.document.getElementsByClassName('ProfileNav-value')[1]) {
-                    following = dom.window.document.getElementsByClassName('ProfileNav-value')[1].textContent
+                    following_str = dom.window.document.getElementsByClassName('ProfileNav-value')[1].textContent
                 } else {
-                    following = ''
+                    following_str = ''
                 }
                 ;
-                var followers;
+                var followers_str;
                 if (dom.window.document.getElementsByClassName('ProfileNav-value')[2]) {
-                    followers = dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent
+                    followers_str = dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent
                 } else {
-                    followers = ''
+                    followers_str = ''
                 }
                 ;
-                var likes;
+                var likes_str;
                 if (dom.window.document.getElementsByClassName('ProfileNav-value')[3]) {
-                    likes = dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
+                    likes_str = dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
                 } else {
-                    likes = ''
+                    likes_str = ''
                 }
                 ;
 
                 var twitter = {
                     available: 1,
-                    name: name,
-                    account: account,
-                    user_id: user_id,
-                    avatar: avatar,
-                    banner: banner,
-                    tweets: tweets,
-                    following: following,
-                    followers: followers,
-                    likes: likes
+                    suspended: 0,
+                    user_id: profile_user.id,
+                    name: profile_user.name,
+                    account: profile_user.screen_name,
+                    verified: profile_user.verified,
+                    Bussnis_state: profile_user.business_profile_state,
+                    created_at: profile_user.created_at,
+                    Loacation: profile_user.location,
+                    website: profile_user.url,
+                    description: profile_user.description,
+                    tweets: profile_user.statuses_count,
+                    tweets_str: tweets_str,
+                    following: profile_user.friends_count,
+                    following_str: following_str,
+                    followers: profile_user.followers_count,
+                    followers_str: followers_str,
+                    likes: profile_user.favourites_count,
+                    likes_str: likes_str,
+                    avatar: profile_user.profile_image_url.replace("_normal", "_400x400"),
+                    banner: profile_user.profile_banner_url,
+                    background_image: profile_user.profile_background_image_url,
+                    background_color: profile_user.profile_background_color
                 }
-
-                // var twitter = {
-                //     name: dom.window.document.getElementsByClassName('ProfileHeaderCard-nameLink')[0].textContent,
-                //     account: dom.window.document.getElementsByClassName('u-linkComplex-target')[0].textContent,
-                //     user_id: '',
-                //     avatar: dom.window.document.getElementsByClassName('ProfileAvatar-image')[0].src,
-                //     banner: dom.window.document.querySelector('.ProfileCanopy-headerBg img').src,
-                //     tweets: dom.window.document.getElementsByClassName('ProfileNav-value')[0].textContent,
-                //     following: dom.window.document.getElementsByClassName('ProfileNav-value')[1].textContent,
-                //     followers: dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent,
-                //     likes: dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
-                // }
             }
             ;
             console.log(twitter);
             console.log(res.statusCode);
             res.render(__dirname + '/pages/twitter', twitter);
         }
-        // if error
+        
+        // if error = No User Found
         else {
             console.log('No Such a User .');
 
             var twitter = {
-                available: 0,
-                name: '',
-                account: '',
-                user_id: '',
-                avatar: '',
-                banner: '',
-                tweets: '',
-                following: '',
-                followers: '',
-                likes: ''
-            }
+                    available: 0,
+                    suspended: 0,
+                    user_id: '',
+                    name: '',
+                    account: req.params.name.toLowerCase().split(' ').join(''),
+                    verified: '',
+                    Bussnis_state: '',
+                    created_at: '',
+                    Loacation: '',
+                    website: '',
+                    description: '',
+                    tweets: '',
+                    tweets_str: '',
+                    following: '',
+                    following_str: '',
+                    followers: '',
+                    followers_str: '',
+                    likes: '',
+                    likes_str: '',
+                    avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
+                    banner: '',
+                    background_image: '',
+                    background_color: ''
+                };
 
             res.sendFile(__dirname + '/pages/404.html');
         }
@@ -187,6 +181,17 @@ app.get('/twitter/:name', function (req, res) {
 
 
 })
+
+
+
+
+
+
+
+
+
+
+
 
 
 //  Twitter api -------------------------------------
@@ -219,97 +224,89 @@ app.get('/twitter/api/:name', function (req, res) {
                 // Suspended Account
                 var twitter = {
                     available: 1,
-                    suspended: '1',
-                    // name: name,
-                    // account: name.toLowerCase().split(' ').join(''),
+                    suspended: 1,
+                    user_id: '',
                     name: '',
                     account: req.params.name.toLowerCase().split(' ').join(''),
-                    user_id: '',
+                    verified: '',
+                    Bussnis_state: '',
+                    created_at: '',
+                    Loacation: '',
+                    website: '',
+                    description: '',
+                    tweets: '',
+                    tweets_str: '',
+                    following: '',
+                    following_str: '',
+                    followers: '',
+                    followers_str: '',
+                    likes: '',
+                    likes_str: '',
                     avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
                     banner: '',
-                    tweets: '',
-                    following: '',
-                    followers: '',
-                    likes: ''
+                    background_image: '',
+                    background_color: ''
                 };
             } else {
+
                 // Active user
-                var name;
-                if (dom.window.document.getElementsByClassName('ProfileHeaderCard-nameLink')[0]) {
-                    name = dom.window.document.getElementsByClassName('ProfileHeaderCard-nameLink')[0].textContent
-                } else {
-                    name = ''
-                }
-                ;
-                var account;
-                if (dom.window.document.getElementsByClassName('u-linkComplex-target')[0]) {
-                    account = dom.window.document.getElementsByClassName('u-linkComplex-target')[0].textContent
-                } else {
-                    account = ''
-                }
-                ;
-                var user_id;
-                if (dom.window.document.getElementById('init-data')) {
-                    user_id = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user.id_str
-                } else {
-                    user_id = ''
-                }
-                ;
-                var avatar;
-                if (dom.window.document.getElementsByClassName('ProfileAvatar-image')[0]) {
-                    avatar = dom.window.document.getElementsByClassName('ProfileAvatar-image')[0].src
-                } else {
-                    avatar = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg'
-                }
-                ;
-                var banner;
-                if (dom.window.document.querySelector('.ProfileCanopy-headerBg img')) {
-                    banner = dom.window.document.querySelector('.ProfileCanopy-headerBg img').src
-                } else {
-                    banner = ''
-                }
-                ;
-                var tweets;
+
+                var profile_user = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user
+
+
+                var tweets_str;
                 if (dom.window.document.getElementsByClassName('ProfileNav-value')[0]) {
-                    tweets = dom.window.document.getElementsByClassName('ProfileNav-value')[0].textContent;
+                    tweets_str = dom.window.document.getElementsByClassName('ProfileNav-value')[0].textContent
                 } else {
-                    tweets = ''
+                    tweets_str = ''
                 }
                 ;
-                var following;
+                var following_str;
                 if (dom.window.document.getElementsByClassName('ProfileNav-value')[1]) {
-                    following = dom.window.document.getElementsByClassName('ProfileNav-value')[1].textContent
+                    following_str = dom.window.document.getElementsByClassName('ProfileNav-value')[1].textContent
                 } else {
-                    following = ''
+                    following_str = ''
                 }
                 ;
-                var followers;
+                var followers_str;
                 if (dom.window.document.getElementsByClassName('ProfileNav-value')[2]) {
-                    followers = dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent
+                    followers_str = dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent
                 } else {
-                    followers = ''
+                    followers_str = ''
                 }
                 ;
-                var likes;
+                var likes_str;
                 if (dom.window.document.getElementsByClassName('ProfileNav-value')[3]) {
-                    likes = dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
+                    likes_str = dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
                 } else {
-                    likes = ''
+                    likes_str = ''
                 }
                 ;
 
                 var twitter = {
                     available: 1,
-                    suspended: '0',
-                    name: name,
-                    account: account,
-                    user_id: user_id,
-                    avatar: avatar,
-                    banner: banner,
-                    tweets: tweets,
-                    following: following,
-                    followers: followers,
-                    likes: likes
+                    suspended: 0,
+                    user_id: profile_user.id,
+                    name: profile_user.name,
+                    account: profile_user.screen_name,
+                    verified: profile_user.verified,
+                    Bussnis_state: profile_user.business_profile_state,
+                    created_at: profile_user.created_at,
+                    Loacation: profile_user.location,
+                    website: profile_user.url,
+                    description: profile_user.description,
+                    tweets: profile_user.statuses_count,
+                    tweets_str: tweets_str,
+                    following: profile_user.friends_count,
+                    following_str: following_str,
+                    followers: profile_user.followers_count,
+                    followers_str: followers_str,
+                    likes: profile_user.favourites_count,
+                    likes_str: likes_str,
+                    avatar: profile_user.profile_image_url.replace("_normal", "_400x400"),
+                    banner: profile_user.profile_banner_url,
+                    background_image: profile_user.profile_background_image_url,
+                    background_color: profile_user.profile_background_color
                 }
             }
             ;
@@ -318,23 +315,35 @@ app.get('/twitter/api/:name', function (req, res) {
         }
 
 
-        // if error
+        // if error = No User Found
         else {
             console.log('No Such a User .');
 
             var twitter = {
-                available: 0,
-                suspended: '0',
-                name: '',
-                account: '',
-                user_id: '',
-                avatar: '',
-                banner: '',
-                tweets: '',
-                following: '',
-                followers: '',
-                likes: ''
-            }
+                    available: 0,
+                    suspended: 0,
+                    user_id: '',
+                    name: '',
+                    account: req.params.name.toLowerCase().split(' ').join(''),
+                    verified: '',
+                    Bussnis_state: '',
+                    created_at: '',
+                    Loacation: '',
+                    website: '',
+                    description: '',
+                    tweets: '',
+                    tweets_str: '',
+                    following: '',
+                    following_str: '',
+                    followers: '',
+                    followers_str: '',
+                    likes: '',
+                    likes_str: '',
+                    avatar: '',
+                    banner: '',
+                    background_image: '',
+                    background_color: ''
+                };
             console.log(twitter)
             res.send(twitter)
 

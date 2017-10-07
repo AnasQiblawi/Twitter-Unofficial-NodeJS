@@ -22,8 +22,8 @@ html, body {
 body {
   padding: 0;
   margin: 0;
-  background: #4099FF;
-  background: #4099FF;
+  /*background: #4099FF;*/
+  background: #<%= background_color %>;
   display: -webkit-box;
   display: -moz-box;
   display: box;
@@ -53,7 +53,7 @@ body {
 }
 
 .profile {
-  max-width: 360px;
+  width: 350px;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.13);
@@ -235,17 +235,17 @@ https://twitter.com/{user.}/profile_image?size=original -->
     <div class="info">
 
       <div>
-        <span><%= tweets %></span>
+        <span><%= tweets_str %></span>
         <span>Tweets</span>
       </div>
       
       <div>
-        <span><%= following %></span>
+        <span><%= following_str %></span>
         <span>Following</span>
       </div>
       
       <div>
-        <span><%= followers %></span>
+        <span><%= followers_str %></span>
         <span>Followers</span>
       </div>
 
@@ -262,9 +262,9 @@ https://twitter.com/{user.}/profile_image?size=original -->
   </section>
 </div>
 
-<footer>
+<!-- <footer>
   <a href="https://dribbble.com/shots/2872995-Day-57-Twitter-Profile" target="_blank">Design by Kenneth Patterson</a>
-</footer>
+</footer> -->
   
 
 
