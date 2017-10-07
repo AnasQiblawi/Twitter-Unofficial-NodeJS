@@ -27,6 +27,17 @@ app.get('/', function (req, res) {
 })
 
 
+
+
+
+// Twitter Home ------------------------------------------------------------
+app.get('/twitter' , function (req,res) {
+    res.sendfile(__dirname + '/pages/twitter.html')
+})
+
+
+
+
 //  Twitter Profile  Page -------------------------------------
 app.get('/twitter/:name', function (req, res) {
     var name = req.params.name;

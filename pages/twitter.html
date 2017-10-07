@@ -1,0 +1,228 @@
+<html>
+
+<!-- https://codepen.io/marcobiedermann/pen/dkEzo -->
+
+
+<head>
+
+	<meta charset="utf-8">
+    
+	<title>Twitter</title>
+	<!-- Alert Design -->
+	<script src="https://sweetalert.js.org/assets/sweetalert/sweetalert.min.js"></script>
+
+	<!-- w3school css loading botton -->
+	<!-- https://www.w3schools.com/howto/howto_css_loading_buttons.asp -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- <link rel="stylesheet" href="css/style.css"> -->
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
+
+	<!--[if lt IE 9]>
+		<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+<style>
+	
+@charset "utf-8";
+/* CSS Document */
+
+/* ---------- FONTAWESOME ---------- */
+/* ---------- https://fortawesome.github.com/Font-Awesome/ ---------- */
+/* ---------- http://weloveiconfonts.com/ ---------- */
+
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+/* ---------- ERIC MEYER'S RESET CSS ---------- */
+/* ---------- https://meyerweb.com/eric/tools/css/reset/ ---------- */
+
+@import url(https://meyerweb.com/eric/tools/css/reset/reset.css);
+
+/* ---------- FONTAWESOME ---------- */
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+/* ---------- GENERAL ---------- */
+
+body {
+	background: #f4f4f4;
+	color: #5a5656;
+	font: 100%/1.5em 'Open Sans', sans-serif;
+  margin: 0;
+}
+
+a { text-decoration: none; }
+
+h1 { font-size: 1em; }
+
+h1, p {
+	margin-bottom: 10px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+.uppercase { text-transform: uppercase; }
+
+/* ---------- Container ---------- */
+
+#Container {
+	margin: 50px auto;
+	width: 350px;
+	padding-top: 8%;
+}
+
+form fieldset input[type="text"], input[type="password"] {
+	background: #e5e5e5;
+	border: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 50px;
+	outline: none;
+	padding: 0px 10px;
+	width: 350px;
+  -webkit-appearance:none;
+}
+
+form fieldset input[type="submit"] {
+	background-color: #008dde;
+	border: none;
+	border-radius: 3px;
+	color: #f4f4f4;
+	cursor: pointer;
+	font-family: inherit;
+	height: 50px;
+	text-transform: uppercase;
+	width: 350px;
+  -webkit-appearance:none;
+}
+
+form fieldset a {
+	color: #5a5656;
+	font-size: 10px;
+}
+
+form fieldset a:hover { text-decoration: underline; }
+
+.btn-round {
+	background: #5a5656;
+	border-radius: 50%;
+	color: #f4f4f4;
+	display: block;
+	font-size: 12px;
+	height: 50px;
+	line-height: 50px;
+	margin: 30px 125px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 50px;
+}
+
+.facebook-before {
+	background: #0064ab;
+	border-radius: 3px 0px 0px 3px;
+	color: #f4f4f4;
+	display: block;
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	width: 50px;
+}
+
+.facebook {
+	background: #0079ce;
+	border: none;
+	border-radius: 0px 3px 3px 0px;
+	color: #f4f4f4;
+	cursor: pointer;
+	height: 50px;
+	text-transform: uppercase;
+	width: 250px;
+}
+
+.twitter-before {
+	background: #189bcb;
+	border-radius: 3px 0px 0px 3px;
+	color: #f4f4f4;
+	display: block;
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	width: 50px;
+}
+
+
+.twitter {
+	background: #1bb2e9;
+	border: none;
+	border-radius: 0px 3px 3px 0px;
+	color: #f4f4f4;
+	cursor: pointer;
+	height: 50px;
+	text-transform: uppercase;
+	width: 350px;
+}
+
+.rotar {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+</style>
+
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+
+	<div id="Container">
+
+		<h1><strong>Twitter</strong> api</h1>
+
+		<form action="javascript:void(0);" method="get">
+
+			<fieldset>
+
+				<p><input type="text" required id="Username" value="Username." onBlur="if(this.value.trim()=='')this.value='Username.'" onFocus="if(this.value=='Username.')this.value='' " class=""></p> <!-- JS because of IE support; better: placeholder="Username" -->
+
+
+				<p><input type="submit" id="" onclick="search()" value="Search" class="" ></p>
+
+				<center>
+				<p id="loader" class="buttonload">
+ 				 
+				</p>
+				</center>
+
+			</fieldset>
+
+		</form>
+
+	</div> <!-- end Container -->
+
+	<script>
+		function search() {
+			var Username = document.getElementById('Username').value.trim();
+			if (Username != 'Username.' && Username != '' ) {
+			document.getElementById('loader').innerHTML = '<i class="fa fa-circle-o-notch fa-spin rotar"></i>Loading'
+			location.href = location.origin + '/twitter/' + Username;
+		} else { swal('Oops', 'Something went wrong!', 'error') }
+		}
+	</script>
+
+</body>
+</html>
