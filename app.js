@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
 })
 
 
-//  Twitter Profile Redered Page -------------------------------------
+//  Twitter Profile  Page -------------------------------------
 app.get('/twitter/:name', function (req, res) {
     var name = req.params.name;
     console.log('Profile Page : @' + name);
@@ -52,7 +52,7 @@ app.get('/twitter/:name', function (req, res) {
             const userPage = body;
             const dom = new JSDOM(userPage);
 
-            if (dom.window.document.getElementsByClassName('flex-module error-page clearfix')[0]) {
+            if (dom.window.document.getElementsByClassName('flex-module error-page clearfix')[0] || !dom.window.document.getElementById('init-data') || JSON.parse(dom.window.document.getElementById('init-data').value).sectionName == 'suspended' ) {
                 // Suspended Account
                 var twitter = {
                     available: 1,
@@ -78,7 +78,8 @@ app.get('/twitter/:name', function (req, res) {
                     banner: '',
                     background_image: '',
                     background_color: ''
-                };
+                }
+
             } else {
                 // Active Account 
                 var profile_user = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user
@@ -144,36 +145,36 @@ app.get('/twitter/:name', function (req, res) {
             console.log(res.statusCode);
             res.render(__dirname + '/pages/twitter', twitter);
         }
-        
+
         // if error = No User Found
         else {
             console.log('No Such a User .');
 
             var twitter = {
-                    available: 0,
-                    suspended: 0,
-                    user_id: '',
-                    name: '',
-                    account: req.params.name.toLowerCase().split(' ').join(''),
-                    verified: '',
-                    Bussnis_state: '',
-                    created_at: '',
-                    Loacation: '',
-                    website: '',
-                    description: '',
-                    tweets: '',
-                    tweets_str: '',
-                    following: '',
-                    following_str: '',
-                    followers: '',
-                    followers_str: '',
-                    likes: '',
-                    likes_str: '',
-                    avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
-                    banner: '',
-                    background_image: '',
-                    background_color: ''
-                };
+                available: 0,
+                suspended: 0,
+                user_id: '',
+                name: '',
+                account: req.params.name.toLowerCase().split(' ').join(''),
+                verified: '',
+                Bussnis_state: '',
+                created_at: '',
+                Loacation: '',
+                website: '',
+                description: '',
+                tweets: '',
+                tweets_str: '',
+                following: '',
+                following_str: '',
+                followers: '',
+                followers_str: '',
+                likes: '',
+                likes_str: '',
+                avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
+                banner: '',
+                background_image: '',
+                background_color: ''
+            };
 
             res.sendFile(__dirname + '/pages/404.html');
         }
@@ -181,17 +182,6 @@ app.get('/twitter/:name', function (req, res) {
 
 
 })
-
-
-
-
-
-
-
-
-
-
-
 
 
 //  Twitter api -------------------------------------
@@ -320,30 +310,30 @@ app.get('/twitter/api/:name', function (req, res) {
             console.log('No Such a User .');
 
             var twitter = {
-                    available: 0,
-                    suspended: 0,
-                    user_id: '',
-                    name: '',
-                    account: req.params.name.toLowerCase().split(' ').join(''),
-                    verified: '',
-                    Bussnis_state: '',
-                    created_at: '',
-                    Loacation: '',
-                    website: '',
-                    description: '',
-                    tweets: '',
-                    tweets_str: '',
-                    following: '',
-                    following_str: '',
-                    followers: '',
-                    followers_str: '',
-                    likes: '',
-                    likes_str: '',
-                    avatar: '',
-                    banner: '',
-                    background_image: '',
-                    background_color: ''
-                };
+                available: 0,
+                suspended: 0,
+                user_id: '',
+                name: '',
+                account: req.params.name.toLowerCase().split(' ').join(''),
+                verified: '',
+                Bussnis_state: '',
+                created_at: '',
+                Loacation: '',
+                website: '',
+                description: '',
+                tweets: '',
+                tweets_str: '',
+                following: '',
+                following_str: '',
+                followers: '',
+                followers_str: '',
+                likes: '',
+                likes_str: '',
+                avatar: '',
+                banner: '',
+                background_image: '',
+                background_color: ''
+            };
             console.log(twitter)
             res.send(twitter)
 
