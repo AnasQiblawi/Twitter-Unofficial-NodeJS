@@ -20,9 +20,9 @@ git commit -m 'update my app'
 git push heroku master
 
 // Update
-$ git fetch aq-twito master
-$ git reset --hard aq-twito/master
-$ git push heroku master --force
+git fetch aq-twito master
+git reset --hard aq-twito/master
+git push heroku master --force
 
 // Update
 git add .
