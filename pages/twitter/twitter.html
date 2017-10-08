@@ -459,7 +459,7 @@ ce/*nter {
 
 	<script>
 		function search() {
-			var Username = document.getElementByClassName('Username').value.split(' ').join('');
+			var Username = document.getElementsByClassName('Username')[0].value.split(' ').join('');
 			if (Username != 'Username.' && Username != '' ) {
 			// document.getElementById('loader').innerHTML = '<i class="fa fa-circle-o-notch fa-spin rotar"></i>Loading'
 			document.getElementById('loader').innerHTML = '<span class="loader loader-quart"> </span>'
