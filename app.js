@@ -27,14 +27,14 @@ app.use('/twitter/img', express.static(__dirname + '/pages/twitter/img'));
 
 //  Home Page -------------------------------------
 app.get('/', function (req, res) {
-    console.log('Home Page')
+    console.log('Home Page : ' + req.url)
     res.sendFile(__dirname + '/pages/home.html')
 })
 
 
 // Twitter Home Page ------------------------------------------------------------
 app.get('/twitter', function (req, res) {
-    console.log('Twitter Main Page')
+    console.log('Twitter Main Page : ' + req.url)
     res.sendFile(__dirname + '/pages/twitter/twitter.html')
 })
 
@@ -212,7 +212,7 @@ app.get('/twitter/:name', function (req, res) {
 //  Twitter api ------------------------------------------------------------------------------------------------------
 app.get('/twitter/api/:name', function (req, res) {
     var name = req.params.name;
-    console.log('Profile Page : @' + name);
+    console.log('twitter api : @' + name);
 
     // make GET request to twitter
     // Set the headers
