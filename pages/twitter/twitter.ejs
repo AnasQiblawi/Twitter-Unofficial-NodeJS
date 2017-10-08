@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Twitter Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700'>
+
+      <!-- <link rel="stylesheet" href="css/style.css"> -->
+<style type="text/css">
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  /*background-image: url('<%banner%>');*/
+  background-image: url('http://www.planwallpaper.com/nature-background#static/images/Fall-Nature-Background-Pictures.jpg') ;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: #4099FF;
+  /*background: #<%= background_color %>;*/
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -ms-flex-align: center;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.profile {
+  width: 350px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.13);
+}
+.profile section:nth-of-type(1) {
+  position: relative;
+}
+.profile section:nth-of-type(1):after {
+  content: "";
+  width: 100%;
+  height: 120px;
+  background-color: transparent;
+  background-image: -webkit-linear-gradient(top, transparent, black);
+  background-image: linear-gradient(to bottom,transparent, black);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+.profile section:nth-of-type(1) img {
+  width: 100%;
+  height: auto;
+}
+.profile section:nth-of-type(1) .text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 10px;
+  text-align: center;
+  z-index: 2;
+}
+.profile section:nth-of-type(1) .text p {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.profile section:nth-of-type(1) .text a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.profile section:nth-of-type(2) {
+  width: 100%;
+  background: #fff;
+  padding: 50px 20px 25px;
+  position: relative;
+}
+.profile section:nth-of-type(2) .info {
+  margin-bottom: 30px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.profile section:nth-of-type(2) .info div {
+  float: left;
+  width: 33.33%;
+  text-align: center;
+}
+.profile section:nth-of-type(2) .info div span {
+  display: block;
+}
+.profile section:nth-of-type(2) .info div span:nth-of-type(1) {
+  color: #4d4d4d;
+  font-size: 27px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+.profile section:nth-of-type(2) .info div span:nth-of-type(2) {
+  color: #4099FF;
+  font-size: 16px;
+  font-weight: 300;
+}
+.profile section:nth-of-type(2) .button {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.profile section:nth-of-type(2) .button a {
+  display: inline-block;
+  background: #4099FF;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 15px 50px 15px 90px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  -webkit-transition: background 0.4s ease-in-out;
+  -moz-transition: background 0.4s ease-in-out;
+  transition: background 0.4s ease-in-out;
+}
+.profile section:nth-of-type(2) .button a:hover {
+  background: #0d7eff;
+}
+.profile section:nth-of-type(2) .button a svg {
+  position: absolute;
+  top: 10px;
+  left: 25px;
+  width: 40px;
+  height: 40px;
+}
+.profile section:nth-of-type(2) .button a svg path {
+  fill: #fff;
+}
+.profile section:nth-of-type(2) > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  z-index: 0;
+  margin-top: -60%;
+  margin-left: -100%;
+}
+.profile section:nth-of-type(2) > svg path {
+  fill: #f7f7f7;
+}
+
+footer {
+  position: fixed;
+  right: 30px;
+  bottom: 40px;
+}
+footer a {
+  color: #fff;
+  font-size: 17px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  font-weight: 300;
+  display: inline-block;
+  border-bottom: 2px dotted #fff;
+  -webkit-transition: border-color 0.4s ease-in-out;
+  -moz-transition: border-color 0.4s ease-in-out;
+  transition: border-color 0.4s ease-in-out;
+}
+footer a:hover {
+  border-color: #0d7eff;
+}
+
+</style>
+  
+</head>
+
+
+
+
+
+
+
+<!-- document.getElementsByClassName('ProfileAvatar-image')[0].src
+https://twitter.com/{user.}/profile_image?size=original -->
+<!-- https://graph.facebook.com/{user.id}/picture?width=400&height=400 -->
+
+
+
+
+
+<body>
+  <div class="profile">
+  <section>
+    <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg" alt="Twitter Profile Picture"> -->
+    <!-- <img src="http://abs.twimg.com/sticky/default_profile_images/default_profile.png" alt="Twitter Profile Picture"> -->
+    <img src="<%= avatar %>" alt="Twitter Profile Picture">
+    
+    <div class="text">
+      <p><%= name %> 
+
+<!-- verified icon -->
+<% if (verified) { %>
+<object type="image/svg+xml" data="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB2ZXJzaW9uPSIxLjEiCiAgIHdpZHRoPSIyMCIKICAgaGVpZ2h0PSIyMCI+CiAgPHBhdGggc3R5bGU9ImZpbGw6Izg4YzlmOTtmaWxsLW9wYWNpdHk6MSIgZD0ibSAxNC41NDM2LDE4LjA5MjQgYyAtMC4xNjA0NjcsMCAtMC4zODc4LC0wLjAzIC0wLjY4MiwtMC4wOSAtMC4yOTQyLC0wLjA2IC0wLjQ4ODEzMywtMC4xMTAyIC0wLjU4MTgsLTAuMTUwNiAtMC4zMzQyOCwwLjY2OTMzMyAtMC43ODg5NSwxLjE5NDc2NyAtMS4zNjQwMSwxLjU3NjMgLTAuNTc1MDYsMC4zODE1MzMgLTEuMjE2OTg3LDAuNTcyMyAtMS45MjU3OCwwLjU3MjMgLTAuNzA4NzkzMywwIC0xLjM2NzQzNjcsLTAuMjEwODMzIC0xLjk3NTkzLC0wLjYzMjUgLTAuNjA4NDkzMywtMC40MjE3MzMgLTEuMDMzMSwtMC45MjcxIC0xLjI3MzgyLC0xLjUxNjEgLTAuNDE0NTczMywwLjE2MDY2NyAtMC44NDI1MjMzLDAuMjQxIC0xLjI4Mzg1LDAuMjQxIC0xLjAwMzAwNjcsMCAtMS44NTg5MDY3LC0wLjM3ODIgLTIuNTY3NywtMS4xMzQ2IC0wLjcwODc5MzMsLTAuNzU2MzMzIC0xLjA1NjUwMzMsLTEuNjQ5OSAtMS4wNDMxMywtMi42ODA3IC0wLjAxMzQsLTAuMDQgLTAuMDEzNCwtMC4wODAxNyAwLC0wLjEyMDUgbCAwLC0wLjEyMDUgYyAtMC4wMTM0LC0wLjA0MDEzIC0wLjAxMzQsLTAuMDgwMjggMCwtMC4xMjA0NCAwLjAxMzQsLTAuMDQwMTMgMC4wMTM0LC0wLjA4MDI5IDAsLTAuMTIwNDggQyAxLjI3MDUyLDEzLjQyMDc0NyAwLjgxOTE2MzMzLDEyLjk0MjE2NyAwLjQ5MTUxLDEyLjM1OTg0IDAuMTYzODM2NjcsMTEuNzc3MjQgMCwxMS4xNDc5MjMgMCwxMC40NzE4OSAwLDkuNzk1ODUgMC4xNzcxOTY2Nyw5LjEzOTg5MzMgMC41MzE1OSw4LjUwNDAyIDAuODg1OTksNy44NjgxNCAxLjM5MDg0LDcuMzgyODYzMyAyLjA0NjE0LDcuMDQ4MTkgTCAxLjk2NTk0LDYuNzI2OTEgQyAxLjg4NTcsNi41MjYxMDMzIDEuODQ1NTgsNi4yOTg1MjY3IDEuODQ1NTgsNi4wNDQxOCAxLjgxODg0NjcsNS45MzcwOCAxLjgxODg0NjcsNS44MjMyOSAxLjg0NTU4LDUuNzAyODEgMS44MzIxOCw0LjY4NTQxIDIuMTczMjAzMywzLjc5NTE4MzMgMi44Njg2NSwzLjAzMjEzIDMuNTY0MDcsMi4yNjkwNzY3IDQuNDI2NjU2NywxLjg4NzU1IDUuNDU2NDEsMS44ODc1NSBjIDAuNDQxMzI2NywwIDAuODY5Mjc2NywwLjA4MDMyIDEuMjgzODUsMC4yNDA5NiBDIDYuOTk0MzUzMywxLjUyNjEwMzMgNy40MTU2MTY3LDEuMDIwNzUgOC4wMDQwNSwwLjYxMjQ1IDguNTkyNDU2NywwLjIwNDE1IDkuMjU0NDMsMCA5Ljk4OTk3LDAgYyAxLjQ3MTA4LDAgMi41Njc2OSwwLjcwOTUwMzMzIDMuMjg5ODMsMi4xMjg1MSAwLjM1NDQsLTAuMTYwNjQgMC43NzU2NjcsLTAuMjQwOTYgMS4yNjM4LC0wLjI0MDk2IDEuMDAzLDAgMS44NTU1NjcsMC4zNzQ4MzMzIDIuNTU3NywxLjEyNDUgMC43MDIxMzMsMC43NDk2NjY3IDEuMDY2NTY3LDEuNjQ2NTg2NyAxLjA5MzMsMi42OTA3NiAtMC4wMTMzMywwLjA4MDMyIC0wLjAyLDAuMTk0MTEgLTAuMDIsMC4zNDEzNyBsIC0wLjEyMDMsMC42ODI3MyBjIC0wLjAyNjY3LDAuMTIwNDggLTAuMDY2OCwwLjIyNzU3MzMgLTAuMTIwNCwwLjMyMTI4IDAuNjAxOCwwLjI4MTEyNjcgMS4wODk5MzMsMC43MTk1NDY3IDEuNDY0NCwxLjMxNTI2IDAuMzc0NDY3LDAuNTk1NzIgMC41NzUwNjcsMS4yOTUxODY3IDAuNjAxOCwyLjA5ODQgLTAuMDI2NjcsMC43NDk2NjcgLTAuMjA3MiwxLjQxOTAxIC0wLjU0MTYsMi4wMDgwMyAtMC4zMzQzMzMsMC41ODkwMiAtMC43NzU2NjcsMS4wMzA3ODcgLTEuMzI0LDEuMzI1MyAwLjAyNjY3LDAuMDUzNTMgMC4wNCwwLjA5MzY5IDAuMDQsMC4xMjA0OCBsIDAuMDIsMC4yNDA5NCBjIC0wLjAyNjY3LDAuMDQgLTAuMDI2NjcsMC4wODAxNyAwLDAuMTIwNSAtMC4wMjY2NywxLjA3MDkzMyAtMC4zOTQ0MzMsMS45NzQ1NjcgLTEuMTAzMywyLjcxMDkgLTAuNzA4OCwwLjczNjI2NyAtMS41NTgwMzMsMS4xMDQ0IC0yLjU0NzcsMS4xMDQ0Ii8+CiAgPHBhdGggc3R5bGU9ImZpbGw6I2ZmZmZmZjtmaWxsLW9wYWNpdHk6MTsiIGQ9Ik0gMTMuMjU5OCw2LjU4NjM1IDguNDI1MjgsMTEuNDA1NjIgNi43NjAyOCw5LjcxODg4IEMgNi41MTk1Niw5LjUxODA3MzMgNi4yODIxOCw5LjQxNzY3IDYuMDQ4MTQsOS40MTc2NyA1LjgxNDEwNjcsOS40MTc2NyA1LjU2MzM1NjcsOS41MTgwNzMzIDUuMjk1ODksOS43MTg4OCA1LjA5NTI4MzMsMTAgNC45OTgzMjY3LDEwLjI3MTA4MyA1LjAwNTAyLDEwLjUzMjEzIGMgMC4wMDY2NywwLjI2MTA0IDAuMTEwMzEsMC40NzE4ODMgMC4zMTA5MywwLjYzMjUzIGwgMi4zODcxNiwyLjQwOTY0IGMgMC4yNDA3MiwwLjIwMDggMC41MDE1MDMzLDAuMzAxMiAwLjc4MjM1LDAuMzAxMiAwLjI4MDg0LDAgMC41MDE1LC0wLjEwMDQgMC42NjE5OCwtMC4zMDEyIGwgMC4wMjAxLDAgNS41MjQzNDEsLTUuNjY3NTM1MyBDIDE1LjE5OTY2Miw3LjM0NzgwNTYgMTQuODI3OTk1LDYuNzI1MjcxMSAxNC42NzQ5MzEsNi41Nzg3NTYzIDE0LjUyMTg2Nyw2LjQzMjI0MTUgMTMuODM1OTAxLDYuMDE0NzczMiAxMy4yNTk4LDYuNTg2MzUgeiIgLz4KPC9zdmc+"></object>
+<% } %>
+      </p> 
+ 
+
+      <a href="https://twitter.com/<%= account %>" target="_blank">@<%= account %></a>
+    </div>
+  </section>
+  
+  <section>
+    <div class="info">
+
+      <div>
+        <span><%= tweets_str %></span>
+        <span>Tweets</span>
+      </div>
+      
+      <div>
+        <span><%= following_str %></span>
+        <span>Following</span>
+      </div>
+      
+      <div>
+        <span><%= followers_str %></span>
+        <span>Followers</span>
+      </div>
+
+
+    </div>
+    
+    <div class="button">
+      <a href="https://twitter.com/<%= account %>" target="_blank">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve"><path d="M153.6,301.6c94.3,0,145.9-78.2,145.9-145.9c0-2.2,0-4.4-0.1-6.6c10-7.2,18.7-16.3,25.6-26.6 c-9.2,4.1-19.1,6.8-29.5,8.1c10.6-6.3,18.7-16.4,22.6-28.4c-9.9,5.9-20.9,10.1-32.6,12.4c-9.4-10-22.7-16.2-37.4-16.2 c-28.3,0-51.3,23-51.3,51.3c0,4,0.5,7.9,1.3,11.7c-42.6-2.1-80.4-22.6-105.7-53.6c-4.4,7.6-6.9,16.4-6.9,25.8 c0,17.8,9.1,33.5,22.8,42.7c-8.4-0.3-16.3-2.6-23.2-6.4c0,0.2,0,0.4,0,0.7c0,24.8,17.7,45.6,41.1,50.3c-4.3,1.2-8.8,1.8-13.5,1.8 c-3.3,0-6.5-0.3-9.6-0.9c6.5,20.4,25.5,35.2,47.9,35.6c-17.6,13.8-39.7,22-63.7,22c-4.1,0-8.2-0.2-12.2-0.7 C97.7,293.1,124.7,301.6,153.6,301.6"/></svg>
+ Follow</a>
+    </div>
+    
+    
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve"><path d="M153.6,301.6c94.3,0,145.9-78.2,145.9-145.9c0-2.2,0-4.4-0.1-6.6c10-7.2,18.7-16.3,25.6-26.6 c-9.2,4.1-19.1,6.8-29.5,8.1c10.6-6.3,18.7-16.4,22.6-28.4c-9.9,5.9-20.9,10.1-32.6,12.4c-9.4-10-22.7-16.2-37.4-16.2 c-28.3,0-51.3,23-51.3,51.3c0,4,0.5,7.9,1.3,11.7c-42.6-2.1-80.4-22.6-105.7-53.6c-4.4,7.6-6.9,16.4-6.9,25.8 c0,17.8,9.1,33.5,22.8,42.7c-8.4-0.3-16.3-2.6-23.2-6.4c0,0.2,0,0.4,0,0.7c0,24.8,17.7,45.6,41.1,50.3c-4.3,1.2-8.8,1.8-13.5,1.8 c-3.3,0-6.5-0.3-9.6-0.9c6.5,20.4,25.5,35.2,47.9,35.6c-17.6,13.8-39.7,22-63.7,22c-4.1,0-8.2-0.2-12.2-0.7 C97.7,293.1,124.7,301.6,153.6,301.6"/></svg>
+  </section>
+</div>
+
+<!-- <footer>
+  <a href="https://dribbble.com/shots/2872995-Day-57-Twitter-Profile" target="_blank">Design by Kenneth Patterson</a>
+</footer> -->
+  
+
+
+
+
+
+
+
+
+
+  
+</body>
+</html>

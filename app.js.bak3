@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var fs = require('fs');
-var path = require('path');
 var request = require('request');
 const jsdom = require("jsdom");
 const {JSDOM} = jsdom;
@@ -16,11 +15,6 @@ app.listen(port)
 app.set('view engine', 'ejs');
 console.log('Server is running on port ' + port);
 //
-
-
-// Static Pages -----------------------------------------
-app.use('/twitter/img', express.static(__dirname + '/pages/twitter/img'));
-
 
 
 //  404 Redered Page -------------------------------------
@@ -38,8 +32,7 @@ app.get('/', function (req, res) {
 
 // Twitter Home ------------------------------------------------------------
 app.get('/twitter' , function (req,res) {
-    console.log('Twitter Main Page')
-    res.sendFile(__dirname + '/pages/twitter/twitter.html')
+    res.sendfile(__dirname + '/pages/twitter.html')
 })
 
 
@@ -161,7 +154,7 @@ app.get('/twitter/:name', function (req, res) {
             ;
             console.log(twitter);
             console.log(res.statusCode);
-            res.render(__dirname + '/pages/twitter/twitter', twitter);
+            res.render(__dirname + '/pages/twitter', twitter);
         }
 
         // if error = No User Found
