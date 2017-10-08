@@ -439,7 +439,7 @@ ce/*nter {
 
 			<fieldset>
 
-				<p><input type="search" required id="Username" value="Username." onBlur="if(this.value.trim()=='')this.value='Username.'" onFocus="if(this.value=='Username.')this.value='' " class=""></p> <!-- JS because of IE support; better: placeholder="Username" -->
+				<p><input type="search" required class="Username" value="Username." onBlur="if(this.value.trim()=='')this.value='Username.'" onFocus="if(this.value=='Username.')this.value='' " class=""></p> <!-- JS because of IE support; better: placeholder="Username" -->
 
 
 				<p><input type="submit" id="" onclick="search()" value="Search" class="" ></p>
@@ -459,7 +459,7 @@ ce/*nter {
 
 	<script>
 		function search() {
-			var Username = document.getElementById('Username').value.split(' ').join('');
+			var Username = document.getElementByClassName('Username').value.split(' ').join('');
 			if (Username != 'Username.' && Username != '' ) {
 			// document.getElementById('loader').innerHTML = '<i class="fa fa-circle-o-notch fa-spin rotar"></i>Loading'
 			document.getElementById('loader').innerHTML = '<span class="loader loader-quart"> </span>'
