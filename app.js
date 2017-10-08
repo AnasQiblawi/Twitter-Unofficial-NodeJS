@@ -22,27 +22,21 @@ console.log('Server is running on port ' + port);
 app.use('/twitter/img', express.static(__dirname + '/pages/twitter/img'));
 
 
+//  404  Page -------------------------------------
 
-//  404 Redered Page -------------------------------------
 
-
-//  Home Redered Page -------------------------------------
+//  Home Page -------------------------------------
 app.get('/', function (req, res) {
     console.log('Home Page')
     res.sendFile(__dirname + '/pages/home.html')
 })
 
 
-
-
-
-// Twitter Home ------------------------------------------------------------
-app.get('/twitter' , function (req,res) {
+// Twitter Home Page ------------------------------------------------------------
+app.get('/twitter', function (req, res) {
     console.log('Twitter Main Page')
     res.sendFile(__dirname + '/pages/twitter/twitter.html')
 })
-
-
 
 
 //  Twitter Profile  Page -------------------------------------
@@ -70,17 +64,17 @@ app.get('/twitter/:name', function (req, res) {
             const userPage = body;
             const dom = new JSDOM(userPage);
 
-            if (dom.window.document.getElementsByClassName('flex-module error-page clearfix')[0] || !dom.window.document.getElementById('init-data') || JSON.parse(dom.window.document.getElementById('init-data').value).sectionName == 'suspended' ) {
+            if (dom.window.document.getElementsByClassName('flex-module error-page clearfix')[0] || !dom.window.document.getElementById('init-data') || JSON.parse(dom.window.document.getElementById('init-data').value).sectionName == 'suspended') {
                 // Suspended Account
                 var twitter = {
                     available: 1,
                     suspended: 1,
                     user_id: '',
-                    name: '',
+                    name: 'Suspended Account',
                     account: req.params.name.toLowerCase().split(' ').join(''),
                     verified: '',
                     Bussnis_state: '',
-                    created_at: '',
+                    joined: '',
                     Loacation: '',
                     website: '',
                     description: '',
@@ -95,7 +89,11 @@ app.get('/twitter/:name', function (req, res) {
                     avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
                     banner: '',
                     background_image: '',
-                    background_color: ''
+                    background_color: '',
+                    link_color: '',
+                    sidebar_border_color: '',
+                    sidebar_fill_color: '',
+                    text_color: ''
                 }
 
             } else {
@@ -140,7 +138,7 @@ app.get('/twitter/:name', function (req, res) {
                     account: profile_user.screen_name,
                     verified: profile_user.verified,
                     Bussnis_state: profile_user.business_profile_state,
-                    created_at: profile_user.created_at,
+                    joined: profile_user.created_at,
                     Loacation: profile_user.location,
                     website: profile_user.url,
                     description: profile_user.description,
@@ -155,7 +153,11 @@ app.get('/twitter/:name', function (req, res) {
                     avatar: profile_user.profile_image_url.replace("_normal", "_400x400"),
                     banner: profile_user.profile_banner_url,
                     background_image: profile_user.profile_background_image_url,
-                    background_color: profile_user.profile_background_color
+                    background_color: profile_user.profile_background_color,
+                    link_color: profile_user.profile_link_color,
+                    sidebar_border_color: profile_user.profile_sidebar_border_color,
+                    sidebar_fill_color: profile_user.profile_sidebar_fill_color,
+                    text_color: profile_user.profile_text_color
                 }
             }
             ;
@@ -172,11 +174,11 @@ app.get('/twitter/:name', function (req, res) {
                 available: 0,
                 suspended: 0,
                 user_id: '',
-                name: '',
+                name: 'Not Found',
                 account: req.params.name.toLowerCase().split(' ').join(''),
                 verified: '',
                 Bussnis_state: '',
-                created_at: '',
+                joined: '',
                 Loacation: '',
                 website: '',
                 description: '',
@@ -191,10 +193,14 @@ app.get('/twitter/:name', function (req, res) {
                 avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
                 banner: '',
                 background_image: '',
-                background_color: ''
+                background_color: '',
+                link_color: '',
+                sidebar_border_color: '',
+                sidebar_fill_color: '',
+                text_color: ''
             };
 
-            res.sendFile(__dirname + '/pages/404.html');
+            res.render(__dirname + '/pages/twitter/twitter', twitter);
         }
     })
 
@@ -202,7 +208,8 @@ app.get('/twitter/:name', function (req, res) {
 })
 
 
-//  Twitter api -------------------------------------
+// ===================================================================================================================
+//  Twitter api ------------------------------------------------------------------------------------------------------
 app.get('/twitter/api/:name', function (req, res) {
     var name = req.params.name;
     console.log('Profile Page : @' + name);
@@ -238,7 +245,7 @@ app.get('/twitter/api/:name', function (req, res) {
                     account: req.params.name.toLowerCase().split(' ').join(''),
                     verified: '',
                     Bussnis_state: '',
-                    created_at: '',
+                    joined: '',
                     Loacation: '',
                     website: '',
                     description: '',
@@ -253,7 +260,11 @@ app.get('/twitter/api/:name', function (req, res) {
                     avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
                     banner: '',
                     background_image: '',
-                    background_color: ''
+                    background_color: '',
+                    link_color: '',
+                    sidebar_border_color: '',
+                    sidebar_fill_color: '',
+                    text_color: ''
                 };
             } else {
 
@@ -299,7 +310,7 @@ app.get('/twitter/api/:name', function (req, res) {
                     account: profile_user.screen_name,
                     verified: profile_user.verified,
                     Bussnis_state: profile_user.business_profile_state,
-                    created_at: profile_user.created_at,
+                    joined: profile_user.created_at,
                     Loacation: profile_user.location,
                     website: profile_user.url,
                     description: profile_user.description,
@@ -314,7 +325,11 @@ app.get('/twitter/api/:name', function (req, res) {
                     avatar: profile_user.profile_image_url.replace("_normal", "_400x400"),
                     banner: profile_user.profile_banner_url,
                     background_image: profile_user.profile_background_image_url,
-                    background_color: profile_user.profile_background_color
+                    background_color: profile_user.profile_background_color,
+                    link_color: profile_user.profile_link_color,
+                    sidebar_border_color: profile_user.profile_sidebar_border_color,
+                    sidebar_fill_color: profile_user.profile_sidebar_fill_color,
+                    text_color: profile_user.profile_text_color
                 }
             }
             ;
@@ -335,7 +350,7 @@ app.get('/twitter/api/:name', function (req, res) {
                 account: req.params.name.toLowerCase().split(' ').join(''),
                 verified: '',
                 Bussnis_state: '',
-                created_at: '',
+                joined: '',
                 Loacation: '',
                 website: '',
                 description: '',
@@ -350,7 +365,11 @@ app.get('/twitter/api/:name', function (req, res) {
                 avatar: '',
                 banner: '',
                 background_image: '',
-                background_color: ''
+                background_color: '',
+                link_color: '',
+                sidebar_border_color: '',
+                sidebar_fill_color: '',
+                text_color: ''
             };
             console.log(twitter)
             res.send(twitter)
