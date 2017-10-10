@@ -20,6 +20,7 @@ console.log('Server is running on port ' + port);
 
 // Static Pages -----------------------------------------
 app.use('/twitter/img', express.static(__dirname + '/pages/twitter/img'));
+app.use('/img', express.static(__dirname + '/pages/twitter/img'));
 
 
 //  404  Page -------------------------------------
