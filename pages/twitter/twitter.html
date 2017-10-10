@@ -5,26 +5,29 @@
 
 <head>
 
-	<meta charset="utf-8">
+  <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
-	<title>Twitter</title>
-	<!-- Alert Design -->
-	<script src="https://sweetalert.js.org/assets/sweetalert/sweetalert.min.js"></script>
+  <title>Twitter</title>
+  <!-- Alert Design -->
+  <script src="https://sweetalert.js.org/assets/sweetalert/sweetalert.min.js"></script>
 
-	<!-- w3school css loading botton -->
-	<!-- https://www.w3schools.com/howto/howto_css_loading_buttons.asp -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- w3school css loading botton -->
+  <!-- https://www.w3schools.com/howto/howto_css_loading_buttons.asp -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<!-- <link rel="stylesheet" href="css/style.css"> -->
-	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
 
-	<!--[if lt IE 9]>
-		<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+  <!-- Animate.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
 <style>
-	
+  
 @charset "utf-8";
 /* CSS Document */
 
@@ -48,9 +51,10 @@
 /* ---------- GENERAL ---------- */
 
 body {
-	background: #f4f4f4;
-	color: #5a5656;
-	font: 100%/1.5em 'Open Sans', sans-serif;
+  /*background: #f4f4f4;*/
+  background: #191F26;
+  color: #5a5656;
+  font: 100%/1.5em 'Open Sans', sans-serif;
   margin: 0;
 }
 
@@ -59,11 +63,11 @@ a { text-decoration: none; }
 h1 { font-size: 1em; }
 
 h1, p {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 strong {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .uppercase { text-transform: uppercase; }
@@ -71,119 +75,119 @@ strong {
 /* ---------- Container ---------- */
 
 #Container {
-	margin: 15% auto;
-	margin-top: 40px;
-	margin-bottom: 0px;
-	width: 350px;
-	/*background: lightgray;*/
+  margin: 15% auto;
+  margin-top: 40px;
+  margin-bottom: 0px;
+  width: 350px;
+  /*background: lightgray;*/
     /*border: 1px solid lightgray ;*/
     border-radius: 7px;
     max-width: 357px;
     padding: 12px;
-    height: 85%
+    height: 600px
 
 }
 
 form fieldset input[type="text"], input[type="password"], input[type="search"] {
-	background: #e5e5e5;
-	border: none;
-	border-radius: 3px;
-	color: #5a5656;
-	font-family: inherit;
-	font-size: 14px;
-	height: 50px;
-	outline: none;
-	padding: 0px 10px;
-	width: 350px;
+  background: #e5e5e5;
+  border: none;
+  border-radius: 3px;
+  color: #5a5656;
+  font-family: inherit;
+  font-size: 14px;
+  height: 50px;
+  outline: none;
+  padding: 0px 10px;
+  width: 350px;
   -webkit-appearance:none;
 }
 
 form fieldset input[type="submit"] {
-	background-color: #008dde;
-	border: none;
-	border-radius: 3px;
-	color: #f4f4f4;
-	cursor: pointer;
-	font-family: inherit;
-	height: 50px;
-	text-transform: uppercase;
-	width: 350px;
+  background-color: #008dde;
+  border: none;
+  border-radius: 3px;
+  color: #f4f4f4;
+  cursor: pointer;
+  font-family: inherit;
+  height: 50px;
+  text-transform: uppercase;
+  width: 350px;
   -webkit-appearance:none;
     font-size: 14px;
     letter-spacing: 3px;
 }
 
 form fieldset a {
-	color: #5a5656;
-	font-size: 10px;
+  color: #5a5656;
+  font-size: 10px;
 }
 
 form fieldset a:hover { text-decoration: underline; }
 
 .btn-round {
-	background: #5a5656;
-	border-radius: 50%;
-	color: #f4f4f4;
-	display: block;
-	font-size: 12px;
-	height: 50px;
-	line-height: 50px;
-	margin: 30px 125px;
-	text-align: center;
-	text-transform: uppercase;
-	width: 50px;
+  background: #5a5656;
+  border-radius: 50%;
+  color: #f4f4f4;
+  display: block;
+  font-size: 12px;
+  height: 50px;
+  line-height: 50px;
+  margin: 30px 125px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 50px;
 }
 
 .facebook-before {
-	background: #0064ab;
-	border-radius: 3px 0px 0px 3px;
-	color: #f4f4f4;
-	display: block;
-	float: left;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	width: 50px;
+  background: #0064ab;
+  border-radius: 3px 0px 0px 3px;
+  color: #f4f4f4;
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
 }
 
 .facebook {
-	background: #0079ce;
-	border: none;
-	border-radius: 0px 3px 3px 0px;
-	color: #f4f4f4;
-	cursor: pointer;
-	height: 50px;
-	text-transform: uppercase;
-	width: 250px;
+  background: #0079ce;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  color: #f4f4f4;
+  cursor: pointer;
+  height: 50px;
+  text-transform: uppercase;
+  width: 250px;
 }
 
 .twitter-before {
-	background: #189bcb;
-	border-radius: 3px 0px 0px 3px;
-	color: #f4f4f4;
-	display: block;
-	float: left;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	width: 50px;
+  background: #189bcb;
+  border-radius: 3px 0px 0px 3px;
+  color: #f4f4f4;
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
 }
 
 
 .twitter {
-	background: #1bb2e9;
-	border: none;
-	border-radius: 0px 3px 3px 0px;
-	color: #f4f4f4;
-	cursor: pointer;
-	height: 50px;
-	text-transform: uppercase;
-	width: 350px;
+  background: #1bb2e9;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  color: #f4f4f4;
+  cursor: pointer;
+  height: 50px;
+  text-transform: uppercase;
+  width: 350px;
 }
 
 .rotar {
-	margin-right: 10px;
-	margin-left: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 </style>
@@ -193,8 +197,8 @@ form fieldset a:hover { text-decoration: underline; }
 
 
 .loaders {
-	margin-top: 25px;
-	width: 350px;
+  margin-top: 25px;
+  width: 350px;
   height: 60px;
   line-height: 80px;
   /*background-color: #4EBA6F;*/
@@ -220,8 +224,8 @@ form fieldset a:hover { text-decoration: underline; }
   vertical-align: middle;
 }
 
-/*	$Loader Quadrant
-	========================================================================== */
+/*  $Loader Quadrant
+  ========================================================================== */
 .loader-quart {
   border-radius: 50px;
   border: 6px solid rgba(255, 255, 255, 0.4);
@@ -240,8 +244,8 @@ form fieldset a:hover { text-decoration: underline; }
   animation: spin 1s linear infinite;
 }
 
-/*	$Loader Double circle
-	========================================================================== */
+/*  $Loader Double circle
+  ========================================================================== */
 .loader-double {
   border-radius: 50px;
   border: 6px solid transparent;
@@ -275,8 +279,8 @@ form fieldset a:hover { text-decoration: underline; }
   animation: spinreverse 3s linear infinite;
 }
 
-/*	$Loader Multiple circle
-	========================================================================== */
+/*  $Loader Multiple circle
+  ========================================================================== */
 .loader-circles {
   border-radius: 50px;
   border: 3px solid transparent;
@@ -308,8 +312,8 @@ form fieldset a:hover { text-decoration: underline; }
   animation: spinreverse 10s linear infinite;
 }
 
-/*	$Loader Bars
-	========================================================================== */
+/*  $Loader Bars
+  ========================================================================== */
 .loader-bars:before,
 .loader-bars:after,
 .loader-bars span {
@@ -412,11 +416,13 @@ form fieldset a:hover { text-decoration: underline; }
   }
 }
 /*center {
-	margin-top: 10%;
+  margin-top: 10%;
 }*/
 
 
-
+*{
+  transition: all 0.5s
+}
 </style>
 
 
@@ -430,47 +436,67 @@ form fieldset a:hover { text-decoration: underline; }
 
 
 
-<body>
+<body id="body" onload='on()'  class="animated  fadeIn">
 
-	<div id="Container">
+<center>
+  <img width="670px" id="gif" src="https://i.pinimg.com/originals/90/80/60/9080607321ab98fa3e70dd24b2513a20.gif">
+</center>
+
+
+  <div  id="Container" >
+    
+    <script>
+    function on() {
+document.getElementById('Container').style.visibility = "visible"
+document.getElementById('gif').style.display = "none"
+document.getElementById('body').style.backgroundColor = '#f4f4f4';
+}
+function off() {
+document.getElementById('Container').style.visibility  = 'hidden';
+document.getElementById('gif').style.visibility  = 'visible';
+}
+
+off()
+</script>
+
 <center>
 
-	<img width="350px" class="logo" src="img/twitter_logo.png">
+  <img  width="350px" class="logo" src="/img/twitter_logo.png">
 
-		<h1 style="float: left;"><strong>Twitter</strong> api</h1>
+    <h1 style="float: left;"><strong>Twitter</strong> api</h1>
 
-		<form action="javascript:void(0);" method="get">
+    <form action="javascript:void(0);" method="get">
 
-			<fieldset>
+      <fieldset>
 
-				<p><input type="search" required class="Username" value="Username." onBlur="if(this.value.trim()=='')this.value='Username.'" onFocus="if(this.value=='Username.')this.value='' " class=""></p> <!-- JS because of IE support; better: placeholder="Username" -->
+        <p><input type="search" required class="Username" value="Username." onBlur="if(this.value.trim()=='')this.value='Username.'" onFocus="if(this.value=='Username.')this.value='' " class=""></p> <!-- JS because of IE support; better: placeholder="Username" -->
 
 
-				<p><input type="submit" id="" onclick="search()" value="Search" class="" ></p>
+        <p><input type="submit" id="" onclick="search()" value="Search" class="" ></p>
 
-				</center>
+        </center>
 
-				<center  class='center' >
-					<section id='loader' class="loaders">  </section>
-				<!-- <p id="loader" class="buttonload"></p> -->
-				</center>
+        <center  class='center' >
+          <section id='loader' class="loaders">  </section>
+        <!-- <p id="loader" class="buttonload"></p> -->
+        </center>
 
-			</fieldset>
+      </fieldset>
 
-		</form>
+    </form>
 
-	</div> <!-- end Container -->
+  </div> <!-- end Container -->
 
-	<script>
-		function search() {
-			var Username = document.getElementsByClassName('Username')[0].value.split(' ').join('');
-			if (Username != 'Username.' && Username != '' ) {
-			// document.getElementById('loader').innerHTML = '<i class="fa fa-circle-o-notch fa-spin rotar"></i>Loading'
-			document.getElementById('loader').innerHTML = '<span class="loader loader-quart"> </span>'
-			location.href = location.origin + '/twitter/' + Username.toLowerCase();
-		} else { swal('Oops', 'Something went wrong!', 'error') }
-		}
-	</script>
+  <script>
+    function search() {
+      var Username = document.getElementsByClassName('Username')[0].value.split(' ').join('');
+      if (Username != 'Username.' && Username != '' ) {
+      // document.getElementById('loader').innerHTML = '<i class="fa fa-circle-o-notch fa-spin rotar"></i>Loading'
+      document.getElementById('loader').innerHTML = '<span class="loader loader-quart"> </span>'
+      location.href = location.origin + '/twitter/' + Username.toLowerCase();
+    } else { swal('Oops', 'Something went wrong!', 'error') }
+    }
+  </script>
 
 
 
