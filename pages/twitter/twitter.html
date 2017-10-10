@@ -84,7 +84,7 @@ strong {
     border-radius: 7px;
     max-width: 357px;
     padding: 12px;
-    height: 600px
+    height: 650px
 
 }
 
@@ -421,8 +421,10 @@ form fieldset a:hover { text-decoration: underline; }
 
 
 *{
-  transition: all 0.5s
+  transition: all 1s
 }
+
+
 </style>
 
 
@@ -438,9 +440,9 @@ form fieldset a:hover { text-decoration: underline; }
 
 <body id="body" onload='on()'  class="animated  fadeIn">
 
-<center>
-  <img width="670px" id="gif" src="https://i.pinimg.com/originals/90/80/60/9080607321ab98fa3e70dd24b2513a20.gif">
-</center>
+<!-- <center>
+  <img width="670px" id="gif"  src="https://i.pinimg.com/originals/90/80/60/9080607321ab98fa3e70dd24b2513a20.gif">
+</center> -->
 
 
   <div  id="Container" >
@@ -448,12 +450,12 @@ form fieldset a:hover { text-decoration: underline; }
     <script>
     function on() {
 document.getElementById('Container').style.visibility = "visible"
-document.getElementById('gif').style.display = "none"
+// document.getElementById('gif').style.display = "none"
 document.getElementById('body').style.backgroundColor = '#f4f4f4';
 }
 function off() {
 document.getElementById('Container').style.visibility  = 'hidden';
-document.getElementById('gif').style.visibility  = 'visible';
+// document.getElementById('gif').style.visibility  = 'visible';
 }
 
 off()
