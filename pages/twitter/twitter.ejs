@@ -109,6 +109,7 @@ body {
   width: 100%;
   background: #fff;
   padding: 50px 20px 25px;
+  padding-top: 25px;
   position: relative;
 }
 .profile section:nth-of-type(2) .info {
@@ -119,7 +120,8 @@ body {
 }
 .profile section:nth-of-type(2) .info div {
   float: left;
-  width: 33.33%;
+  /*width: 33.33%;*/
+  width: 25%;
   text-align: center;
 }
 .profile section:nth-of-type(2) .info div span {
@@ -127,8 +129,9 @@ body {
 }
 .profile section:nth-of-type(2) .info div span:nth-of-type(1) {
   color: #4d4d4d;
-  font-size: 27px;
-  font-weight: 400;
+  /*font-size: 27px;*/
+  font-size: 24px;
+  font-weight: 350;
   margin-bottom: 5px;
 }
 .profile section:nth-of-type(2) .info div span:nth-of-type(2) {
@@ -241,6 +244,7 @@ https://twitter.com/{user.}/profile_image?size=original -->
  
 
       <a href="https://twitter.com/<%= account %>" target="_blank">@<%= account %></a>
+      <a style="padding-left: 20px">ID : <%= user_id %></a>
     </div>
   </section>
   
@@ -260,6 +264,11 @@ https://twitter.com/{user.}/profile_image?size=original -->
       <div>
         <span><%= followers_str %></span>
         <span>Followers</span>
+      </div>
+      
+      <div>
+        <span><%= likes_str %></span>
+        <span>Likes</span>
       </div>
 
 
