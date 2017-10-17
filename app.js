@@ -113,63 +113,40 @@ app.get('/twitter/:name', function (req, res) {
                 var profile_user = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user
 
 
-                var tweets_str = profile_user.statuses_count;
-                if (isNaN(tweets_str * tweets_str) ) {
-                    tweets_str = '0'
-                } else {
-                	tweets_str = formatNum(tweets_str)
-                }
-                ;
-                var following_str = profile_user.friends_count;
-                if (isNaN(following_str * following_str) ) {
-                    following_str = '0'
-                } else {
-                	following_str = formatNum(following_str)
-                }
-                ;
-                var followers_str = profile_user.followers_count;
-                if (isNaN(followers_str * followers_str) ) {
-                    followers_str = '0'
-                } else {
-                	followers_str = formatNum(followers_str)
-                }
-                ;
-                var likes_str = profile_user.favourites_count;
-                if (isNaN(likes_str * likes_str) ) {
-                    likes_str = '0'
-                } else {
-                	likes_str = formatNum(likes_str)
-                }
-                ;
+                var tweets_str    = formatNum(profile_user.statuses_count);
+                var following_str = formatNum(profile_user.friends_count);
+                var followers_str = formatNum(profile_user.followers_count);
+                var likes_str 	  = formatNum(profile_user.favourites_count);
+
 
                 var twitter = {
                     available: 1,
                     suspended: 0,
-                    user_id: profile_user.id,
-                    name: profile_user.name,
-                    account: profile_user.screen_name,
-                    verified: profile_user.verified,
-                    Bussnis_state: profile_user.business_profile_state,
-                    joined: profile_user.created_at,
-                    location: profile_user.location,
-                    website: profile_user.url,
-                    description: profile_user.description,
-                    tweets: profile_user.statuses_count,
-                    tweets_str: tweets_str,
-                    following: profile_user.friends_count,
-                    following_str: following_str,
-                    followers: profile_user.followers_count,
-                    followers_str: followers_str,
-                    likes: profile_user.favourites_count,
-                    likes_str: likes_str,
-                    avatar: profile_user.profile_image_url.replace("_normal", "_400x400"),
-                    banner: profile_user.profile_banner_url,
-                    background_image: profile_user.profile_background_image_url,
-                    background_color: profile_user.profile_background_color,
-                    link_color: profile_user.profile_link_color,
-                    sidebar_border_color: profile_user.profile_sidebar_border_color,
-                    sidebar_fill_color: profile_user.profile_sidebar_fill_color,
-                    text_color: profile_user.profile_text_color
+                    user_id: 	profile_user.id,
+                    name: 		profile_user.name,
+                    account: 	profile_user.screen_name,
+                    verified: 		profile_user.verified,
+                    Bussnis_state: 	profile_user.business_profile_state,
+                    joined: 		profile_user.created_at,
+                    location: 		profile_user.location,
+                    website: 		profile_user.url,
+                    description: 	profile_user.description,
+                    tweets: 		profile_user.statuses_count,
+                    tweets_str: 	tweets_str,
+                    following: 		profile_user.friends_count,
+                    following_str: 	following_str,
+                    followers: 		profile_user.followers_count,
+                    followers_str: 	followers_str,
+                    likes: 			profile_user.favourites_count,
+                    likes_str: 		likes_str,
+                    avatar: 		profile_user.profile_image_url.replace("_normal", "_400x400"),
+                    banner: 				profile_user.profile_banner_url,
+                    background_image: 		profile_user.profile_background_image_url,
+                    background_color: 		profile_user.profile_background_color,
+                    link_color: 			profile_user.profile_link_color,
+                    sidebar_border_color: 	profile_user.profile_sidebar_border_color,
+                    sidebar_fill_color: 	profile_user.profile_sidebar_fill_color,
+                    text_color: 			profile_user.profile_text_color
                 }
             }
             ;
@@ -285,63 +262,39 @@ app.get('/twitter/api/:name', function (req, res) {
                 var profile_user = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user
 
 
-                var tweets_str = profile_user.statuses_count;
-                if (isNaN(tweets_str * tweets_str) ) {
-                    tweets_str = '0'
-                } else {
-                	tweets_str = formatNum(tweets_str)
-                }
-                ;
-                var following_str = profile_user.friends_count;
-                if (isNaN(following_str * following_str) ) {
-                    following_str = '0'
-                } else {
-                	following_str = formatNum(following_str)
-                }
-                ;
-                var followers_str = profile_user.followers_count;
-                if (isNaN(followers_str * followers_str) ) {
-                    followers_str = '0'
-                } else {
-                	followers_str = formatNum(followers_str)
-                }
-                ;
-                var likes_str = profile_user.favourites_count;
-                if (isNaN(likes_str * likes_str) ) {
-                    likes_str = '0'
-                } else {
-                	likes_str = formatNum(likes_str)
-                }
-                ;
+                var tweets_str    = formatNum(profile_user.statuses_count);
+                var following_str = formatNum(profile_user.friends_count);
+                var followers_str = formatNum(profile_user.followers_count);
+                var likes_str 	  = formatNum(profile_user.favourites_count);
 
                 var twitter = {
                     available: 1,
                     suspended: 0,
-                    user_id: profile_user.id,
-                    name: profile_user.name,
-                    account: profile_user.screen_name,
-                    verified: profile_user.verified,
-                    Bussnis_state: profile_user.business_profile_state,
-                    joined: profile_user.created_at,
-                    location: profile_user.location,
-                    website: profile_user.url,
-                    description: profile_user.description,
-                    tweets: profile_user.statuses_count,
-                    tweets_str: tweets_str,
-                    following: profile_user.friends_count,
-                    following_str: following_str,
-                    followers: profile_user.followers_count,
-                    followers_str: followers_str,
-                    likes: profile_user.favourites_count,
-                    likes_str: likes_str,
-                    avatar: profile_user.profile_image_url.replace("_normal", "_400x400"),
-                    banner: profile_user.profile_banner_url,
-                    background_image: profile_user.profile_background_image_url,
-                    background_color: profile_user.profile_background_color,
-                    link_color: profile_user.profile_link_color,
-                    sidebar_border_color: profile_user.profile_sidebar_border_color,
-                    sidebar_fill_color: profile_user.profile_sidebar_fill_color,
-                    text_color: profile_user.profile_text_color
+                    user_id: 	profile_user.id,
+                    name: 		profile_user.name,
+                    account: 	profile_user.screen_name,
+                    verified: 		profile_user.verified,
+                    Bussnis_state: 	profile_user.business_profile_state,
+                    joined: 		profile_user.created_at,
+                    location: 		profile_user.location,
+                    website: 		profile_user.url,
+                    description: 	profile_user.description,
+                    tweets: 		profile_user.statuses_count,
+                    tweets_str: 	tweets_str,
+                    following: 		profile_user.friends_count,
+                    following_str: 	following_str,
+                    followers: 		profile_user.followers_count,
+                    followers_str: 	followers_str,
+                    likes: 			profile_user.favourites_count,
+                    likes_str: 		likes_str,
+                    avatar: 		profile_user.profile_image_url.replace("_normal", "_400x400"),
+                    banner: 				profile_user.profile_banner_url,
+                    background_image: 		profile_user.profile_background_image_url,
+                    background_color: 		profile_user.profile_background_color,
+                    link_color: 			profile_user.profile_link_color,
+                    sidebar_border_color: 	profile_user.profile_sidebar_border_color,
+                    sidebar_fill_color: 	profile_user.profile_sidebar_fill_color,
+                    text_color: 			profile_user.profile_text_color
                 }
             }
             ;
