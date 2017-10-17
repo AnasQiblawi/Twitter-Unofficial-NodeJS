@@ -288,21 +288,29 @@ app.get('/twitter/api/:name', function (req, res) {
                 var tweets_str = profile_user.statuses_count;
                 if (isNaN(tweets_str * tweets_str) ) {
                     tweets_str = '0'
+                } else {
+                	tweets_str = formatNum(tweets_str)
                 }
                 ;
                 var following_str = profile_user.friends_count;
                 if (isNaN(following_str * following_str) ) {
                     following_str = '0'
+                } else {
+                	following_str = formatNum(following_str)
                 }
                 ;
                 var followers_str = profile_user.followers_count;
                 if (isNaN(followers_str * followers_str) ) {
                     followers_str = '0'
+                } else {
+                	followers_str = formatNum(followers_str)
                 }
                 ;
                 var likes_str = profile_user.favourites_count;
                 if (isNaN(likes_str * likes_str) ) {
                     likes_str = '0'
+                } else {
+                	likes_str = formatNum(likes_str)
                 }
                 ;
 
