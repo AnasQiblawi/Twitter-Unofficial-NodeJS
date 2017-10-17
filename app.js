@@ -76,7 +76,7 @@ app.get('/twitter/:name', function (req, res) {
                     verified: '',
                     Bussnis_state: '',
                     joined: '',
-                    Loacation: '',
+                    location: '',
                     website: '',
                     description: '',
                     tweets: '',
@@ -103,31 +103,31 @@ app.get('/twitter/:name', function (req, res) {
 
 
                 var tweets_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[0]) {
+                if (dom.window.document.getElementsByClassName('ProfileNav-value')[0] && profile_user.statuses_count ) {
                     tweets_str = dom.window.document.getElementsByClassName('ProfileNav-value')[0].textContent
                 } else {
-                    tweets_str = ''
+                    tweets_str = '0'
                 }
                 ;
                 var following_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[1]) {
+                if (dom.window.document.getElementsByClassName('ProfileNav-value')[1] && profile_user.friends_count ) {
                     following_str = dom.window.document.getElementsByClassName('ProfileNav-value')[1].textContent
                 } else {
-                    following_str = ''
+                    following_str = '0'
                 }
                 ;
                 var followers_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[2]) {
+                if (dom.window.document.getElementsByClassName('ProfileNav-value')[2] && profile_user.followers_count ) {
                     followers_str = dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent
                 } else {
-                    followers_str = ''
+                    followers_str = '0'
                 }
                 ;
                 var likes_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[3]) {
+                if (dom.window.document.getElementsByClassName('ProfileNav-value')[3] && profile_user.favourites_count ) {
                     likes_str = dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
                 } else {
-                    likes_str = ''
+                    likes_str = '0'
                 }
                 ;
 
@@ -140,7 +140,7 @@ app.get('/twitter/:name', function (req, res) {
                     verified: profile_user.verified,
                     Bussnis_state: profile_user.business_profile_state,
                     joined: profile_user.created_at,
-                    Loacation: profile_user.location,
+                    location: profile_user.location,
                     website: profile_user.url,
                     description: profile_user.description,
                     tweets: profile_user.statuses_count,
@@ -180,7 +180,7 @@ app.get('/twitter/:name', function (req, res) {
                 verified: '',
                 Bussnis_state: '',
                 joined: '',
-                Loacation: '',
+                location: '',
                 website: '',
                 description: '',
                 tweets: '',
@@ -247,7 +247,7 @@ app.get('/twitter/api/:name', function (req, res) {
                     verified: '',
                     Bussnis_state: '',
                     joined: '',
-                    Loacation: '',
+                    location: '',
                     website: '',
                     description: '',
                     tweets: '',
@@ -275,31 +275,31 @@ app.get('/twitter/api/:name', function (req, res) {
 
 
                 var tweets_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[0]) {
+                if (dom.window.document.getElementsByClassName('ProfileNav-value')[0] && profile_user.statuses_count ) {
                     tweets_str = dom.window.document.getElementsByClassName('ProfileNav-value')[0].textContent
                 } else {
-                    tweets_str = ''
+                    tweets_str = '0'
                 }
                 ;
                 var following_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[1]) {
+                if (dom.window.document.getElementsByClassName('ProfileNav-value')[1] && profile_user.friends_count ) {
                     following_str = dom.window.document.getElementsByClassName('ProfileNav-value')[1].textContent
                 } else {
-                    following_str = ''
+                    following_str = '0'
                 }
                 ;
                 var followers_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[2]) {
+                if (dom.window.document.getElementsByClassName('ProfileNav-value')[2] && profile_user.followers_count ) {
                     followers_str = dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent
                 } else {
-                    followers_str = ''
+                    followers_str = '0'
                 }
                 ;
                 var likes_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[3]) {
+                if (dom.window.document.getElementsByClassName('ProfileNav-value')[3] && profile_user.favourites_count ) {
                     likes_str = dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
                 } else {
-                    likes_str = ''
+                    likes_str = '0'
                 }
                 ;
 
@@ -312,7 +312,7 @@ app.get('/twitter/api/:name', function (req, res) {
                     verified: profile_user.verified,
                     Bussnis_state: profile_user.business_profile_state,
                     joined: profile_user.created_at,
-                    Loacation: profile_user.location,
+                    location: profile_user.location,
                     website: profile_user.url,
                     description: profile_user.description,
                     tweets: profile_user.statuses_count,
@@ -352,7 +352,7 @@ app.get('/twitter/api/:name', function (req, res) {
                 verified: '',
                 Bussnis_state: '',
                 joined: '',
-                Loacation: '',
+                location: '',
                 website: '',
                 description: '',
                 tweets: '',
