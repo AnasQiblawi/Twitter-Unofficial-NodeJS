@@ -17,6 +17,17 @@ app.set('view engine', 'ejs');
 console.log('Server is running on port ' + port);
 //
 
+// Format numbers
+function formatNum(x) {
+ x > 9999 && x < 999999 ? x= (x/1000).toFixed()  + 'K' : x=x
+ x > 999999 && x < 999999999 ? x= (x/1000000).toFixed() + 'M' : x=x
+ x > 999999999 && x < 999999999999 ? x= (x/1000000000).toFixed() + 'B' : x=x
+ x > 999999999999 && x < 999999999999999 ? x= (x/1000000000000).toFixed() + 'T' : x=x
+ x > 999999999999999 && x < 999999999999999999 ? x= (x/1000000000000000).toFixed() + 'P' : x=x
+ x > 999999999999999999 && x < 999999999999999999999 ? x= (x/1000000000000000000).toFixed() + 'E' : x=x
+return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
 
 // Static Pages -----------------------------------------
 app.use('/twitter/img', express.static(__dirname + '/pages/twitter/img'));
@@ -102,32 +113,32 @@ app.get('/twitter/:name', function (req, res) {
                 var profile_user = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user
 
 
-                var tweets_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[0] && profile_user.statuses_count ) {
-                    tweets_str = dom.window.document.getElementsByClassName('ProfileNav-value')[0].textContent
-                } else {
+                var tweets_str = profile_user.statuses_count;
+                if (isNaN(tweets_str * tweets_str) ) {
                     tweets_str = '0'
+                } else {
+                	tweets_str = formatNum(tweets_str)
                 }
                 ;
-                var following_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[1] && profile_user.friends_count ) {
-                    following_str = dom.window.document.getElementsByClassName('ProfileNav-value')[1].textContent
-                } else {
+                var following_str = profile_user.friends_count;
+                if (isNaN(following_str * following_str) ) {
                     following_str = '0'
+                } else {
+                	following_str = formatNum(following_str)
                 }
                 ;
-                var followers_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[2] && profile_user.followers_count ) {
-                    followers_str = dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent
-                } else {
+                var followers_str = profile_user.followers_count;
+                if (isNaN(followers_str * followers_str) ) {
                     followers_str = '0'
+                } else {
+                	followers_str = formatNum(followers_str)
                 }
                 ;
-                var likes_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[3] && profile_user.favourites_count ) {
-                    likes_str = dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
-                } else {
+                var likes_str = profile_user.favourites_count;
+                if (isNaN(likes_str * likes_str) ) {
                     likes_str = '0'
+                } else {
+                	likes_str = formatNum(likes_str)
                 }
                 ;
 
@@ -274,31 +285,23 @@ app.get('/twitter/api/:name', function (req, res) {
                 var profile_user = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user
 
 
-                var tweets_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[0] && profile_user.statuses_count ) {
-                    tweets_str = dom.window.document.getElementsByClassName('ProfileNav-value')[0].textContent
-                } else {
+                var tweets_str = profile_user.statuses_count;
+                if (isNaN(tweets_str * tweets_str) ) {
                     tweets_str = '0'
                 }
                 ;
-                var following_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[1] && profile_user.friends_count ) {
-                    following_str = dom.window.document.getElementsByClassName('ProfileNav-value')[1].textContent
-                } else {
+                var following_str = profile_user.friends_count;
+                if (isNaN(following_str * following_str) ) {
                     following_str = '0'
                 }
                 ;
-                var followers_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[2] && profile_user.followers_count ) {
-                    followers_str = dom.window.document.getElementsByClassName('ProfileNav-value')[2].textContent
-                } else {
+                var followers_str = profile_user.followers_count;
+                if (isNaN(followers_str * followers_str) ) {
                     followers_str = '0'
                 }
                 ;
-                var likes_str;
-                if (dom.window.document.getElementsByClassName('ProfileNav-value')[3] && profile_user.favourites_count ) {
-                    likes_str = dom.window.document.getElementsByClassName('ProfileNav-value')[3].textContent
-                } else {
+                var likes_str = profile_user.favourites_count;
+                if (isNaN(likes_str * likes_str) ) {
                     likes_str = '0'
                 }
                 ;
