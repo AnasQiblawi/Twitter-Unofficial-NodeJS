@@ -208,7 +208,7 @@ app.get('/twitter/api/:name', function (req, res) {
     request(options, function (error, response, body) {
         console.log(response.statusCode)
         // if no error
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode == 200 && body.length>0) {
 
                 // Active Account 
                 var profile_user = body[0];
