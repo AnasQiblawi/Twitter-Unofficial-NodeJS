@@ -268,7 +268,7 @@ app.get('/twitter/api/:name', function (req, res) {
                 user_id: '',
                 user_id_str: '',
                 name: 'Not Found',
-                account: name),
+                account: name,
                 verified: '',
                 Bussnis_state: '',
                 joined: '',
