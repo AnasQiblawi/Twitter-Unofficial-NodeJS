@@ -67,17 +67,17 @@ app.get('/twitter/:name', function (req, res) {
 		method: 'GET',
 		json: true,
 		url: 'https://api.twitter.com/1.1/users/search.json?q=' + name,
-		headers: {
-		'authorization': ' Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
-		'x-guest-token': ' 1310998165819138048',
-		'Cookie': 'personalization_id="v1_8QTEF/OD5mZlqdRONDIimw=="; guest_id=v1%3A160140348043189773'
+		'headers': {
+			'x-csrf-token': ' 2549ce8ff29dcf107227daad84705cbca4f25413fbf034487e4aac1fb6fb75a7fc2a14883fab4b440146f1995a431e9a533a18b38692bea399b622cb3fdf2b5b9d2ae86737fe4f1f8fd482768e0f3bb3',
+			'authorization': ' Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
+			'Cookie': ' personalization_id="v1_uNY+hCALY/9VHLheaM8lQQ=="; guest_id=v1%3A154719727239623211; _ga=GA1.2.1129466888.1547197284; external_referer=padhuUp37zjgzgv1mFWxJ12Ozwit7owX|0|8e8t2xd8A2w%3D; ads_prefs="HBERAAA="; kdt=DwtbwLnzjCuFQdVdFxv1QGcUJSxswEkjLyEvey6m; remember_checked_on=1; twid=u%3D32936928; auth_token=d6d832522eca0ce548756e37dc5a38b5d5037036; _twitter_sess=BAh7CiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%250ASGFzaHsABjoKQHVzZWR7ADoPY3JlYXRlZF9hdGwrCPLvPeVoAToMY3NyZl9p%250AZCIlYTIyYzAxNDVmNGY1YWI3NDBlYjNhOGY1ZTJiOGExZDU6B2lkIiU5Y2Q4%250ANWU5YWZlMTY3NDIyYmFmOTNlNTUzZTJkNDZiZDoJdXNlcmkE4JP2AQ%253D%253D--a15a8ca584044d759d0d58f6238a8c36763d8229; ct0=2549ce8ff29dcf107227daad84705cbca4f25413fbf034487e4aac1fb6fb75a7fc2a14883fab4b440146f1995a431e9a533a18b38692bea399b622cb3fdf2b5b9d2ae86737fe4f1f8fd482768e0f3bb3; _gid=GA1.2.1231935430.1601398684; des_opt_in=N; eu_cn=; personalization_id="v1_xESmeH0ZEMpY5JQt/jJ+3Q=="; guest_id=v1%3A160141294769048221; lang=en'
 		}
 	};
     // Start the request
     request(options, function (error, response, body) {
         console.log(response.statusCode)
         // if no error
-        if (!error && response.statusCode == 200 && body.length>0) {
+        if (!error && response.statusCode == 200 && body[0] ) {
 
                 // Active Account 
                 var profile_user = body[0];
@@ -198,17 +198,17 @@ app.get('/twitter/api/:name', function (req, res) {
 		method: 'GET',
 		json: true,
 		url: 'https://api.twitter.com/1.1/users/search.json?q=' + name,
-		headers: {
-		'authorization': ' Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
-		'x-guest-token': ' 1310998165819138048',
-		'Cookie': 'personalization_id="v1_8QTEF/OD5mZlqdRONDIimw=="; guest_id=v1%3A160140348043189773'
+		'headers': {
+			'x-csrf-token': ' 2549ce8ff29dcf107227daad84705cbca4f25413fbf034487e4aac1fb6fb75a7fc2a14883fab4b440146f1995a431e9a533a18b38692bea399b622cb3fdf2b5b9d2ae86737fe4f1f8fd482768e0f3bb3',
+			'authorization': ' Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
+			'Cookie': ' personalization_id="v1_uNY+hCALY/9VHLheaM8lQQ=="; guest_id=v1%3A154719727239623211; _ga=GA1.2.1129466888.1547197284; external_referer=padhuUp37zjgzgv1mFWxJ12Ozwit7owX|0|8e8t2xd8A2w%3D; ads_prefs="HBERAAA="; kdt=DwtbwLnzjCuFQdVdFxv1QGcUJSxswEkjLyEvey6m; remember_checked_on=1; twid=u%3D32936928; auth_token=d6d832522eca0ce548756e37dc5a38b5d5037036; _twitter_sess=BAh7CiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%250ASGFzaHsABjoKQHVzZWR7ADoPY3JlYXRlZF9hdGwrCPLvPeVoAToMY3NyZl9p%250AZCIlYTIyYzAxNDVmNGY1YWI3NDBlYjNhOGY1ZTJiOGExZDU6B2lkIiU5Y2Q4%250ANWU5YWZlMTY3NDIyYmFmOTNlNTUzZTJkNDZiZDoJdXNlcmkE4JP2AQ%253D%253D--a15a8ca584044d759d0d58f6238a8c36763d8229; ct0=2549ce8ff29dcf107227daad84705cbca4f25413fbf034487e4aac1fb6fb75a7fc2a14883fab4b440146f1995a431e9a533a18b38692bea399b622cb3fdf2b5b9d2ae86737fe4f1f8fd482768e0f3bb3; _gid=GA1.2.1231935430.1601398684; des_opt_in=N; eu_cn=; personalization_id="v1_xESmeH0ZEMpY5JQt/jJ+3Q=="; guest_id=v1%3A160141294769048221; lang=en'
 		}
 	};
     // Start the request
     request(options, function (error, response, body) {
         console.log(response.statusCode)
         // if no error
-        if (!error && response.statusCode == 200 && body.length>0) {
+        if (!error && response.statusCode == 200 && body[0] ) {
 
                 // Active Account 
                 var profile_user = body[0];
