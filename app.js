@@ -1,10 +1,6 @@
 var express = require('express');
 var app = express();
-var fs = require('fs');
-var path = require('path');
 var request = require('request');
-const jsdom = require("jsdom");
-const {JSDOM} = jsdom;
 // =====================================================
 
 // Settings --------------------------------------------
@@ -16,6 +12,15 @@ app.listen(port)
 app.set('view engine', 'ejs');
 console.log('Server is running on port ' + port);
 //
+
+// Static Pages -----------------------------------------
+app.use('/twitter/img', express.static(__dirname + '/pages/twitter/img'));
+app.use('/img', express.static(__dirname + '/pages/twitter/img'));
+
+
+
+
+
 
 // Format numbers
 function formatNum(x) {
@@ -30,14 +35,12 @@ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
 
-// Static Pages -----------------------------------------
-app.use('/twitter/img', express.static(__dirname + '/pages/twitter/img'));
-app.use('/img', express.static(__dirname + '/pages/twitter/img'));
+
+
+
 
 
 //  404  Page -------------------------------------
-
-
 //  Home Page -------------------------------------
 app.get('/', function (req, res) {
     console.log('Home Page : ' + req.url)
@@ -50,6 +53,7 @@ app.get('/twitter', function (req, res) {
     console.log('Twitter Main Page : ' + req.url)
     res.sendFile(__dirname + '/pages/twitter/twitter.html')
 })
+
 
 
 //  Twitter Profile  Page -------------------------------------
@@ -73,7 +77,7 @@ app.get('/twitter/:name', function (req, res) {
     request(options, function (error, response, body) {
         console.log(response.statusCode)
         // if no error
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode == 200 && body.length>0) {
 
                 // Active Account 
                 var profile_user = body[0];
