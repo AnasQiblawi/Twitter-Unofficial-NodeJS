@@ -19,6 +19,7 @@ console.log('Server is running on port ' + port);
 
 // Format numbers
 function formatNum(x) {
+ x = Number(x)
  x > 9999 && x < 999999 ? x= (x/1000).toFixed()  + 'K' : x=x
  x > 999999 && x < 999999999 ? x= (x/1000000).toFixed() + 'M' : x=x
  x > 999999999 && x < 999999999999 ? x= (x/1000000000).toFixed() + 'B' : x=x
@@ -61,7 +62,7 @@ app.get('/twitter/:name', function (req, res) {
 	var options = {
 		method: 'GET',
 		json: true,
-		url: 'https://api.twitter.com/1.1/users/search.json?q=' + search,
+		url: 'https://api.twitter.com/1.1/users/search.json?q=' + name,
 		headers: {
 		'authorization': ' Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
 		'x-guest-token': ' 1310998165819138048',
@@ -75,7 +76,7 @@ app.get('/twitter/:name', function (req, res) {
         if (!error && response.statusCode == 200) {
 
                 // Active Account 
-                var profile_user = body;
+                var profile_user = body[0];
 
 
                 var tweets_str   	= formatNum(profile_user.statuses_count);
@@ -171,80 +172,56 @@ app.get('/twitter/:name', function (req, res) {
 })
 
 
+
+
+
+
+
+
+
+
+
+
 // ===================================================================================================================
 //  Twitter api ------------------------------------------------------------------------------------------------------
 app.get('/twitter/api/:name', function (req, res) {
     var name = req.params.name;
-    console.log('twitter api : @' + name);
+    console.log('Search Name : ' + name);
+// make GET request to twitter
 
-    // make GET request to twitter
-    // Set the headers
-    var headers = {
-        'User-Agent': 'Super Agent/0.0.1',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
     // Configure the request
-    var options = {
-        url: 'https://twitter.com/' + name.split(' ').join(''),
-        method: 'GET',
-        headers: headers,
-    }
+	var options = {
+		method: 'GET',
+		json: true,
+		url: 'https://api.twitter.com/1.1/users/search.json?q=' + name,
+		headers: {
+		'authorization': ' Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
+		'x-guest-token': ' 1310998165819138048',
+		'Cookie': 'personalization_id="v1_8QTEF/OD5mZlqdRONDIimw=="; guest_id=v1%3A160140348043189773'
+		}
+	};
     // Start the request
     request(options, function (error, response, body) {
         console.log(response.statusCode)
         // if no error
         if (!error && response.statusCode == 200) {
-            // fs.writeFile('userPage.html', body)
-            const userPage = body;
-            const dom = new JSDOM(userPage);
 
-            if (dom.window.document.getElementsByClassName('flex-module error-page clearfix')[0]) {
-                // Suspended Account
-                var twitter = {
-                    available: 1,
-                    suspended: 1,
-                    user_id: '',
-                    name: '',
-                    account: req.params.name.toLowerCase().split(' ').join(''),
-                    verified: '',
-                    Bussnis_state: '',
-                    joined: '',
-                    location: '',
-                    website: '',
-                    description: '',
-                    tweets: '',
-                    tweets_str: '',
-                    following: '',
-                    following_str: '',
-                    followers: '',
-                    followers_str: '',
-                    likes: '',
-                    likes_str: '',
-                    avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
-                    banner: '',
-                    background_image: '',
-                    background_color: '',
-                    link_color: '',
-                    sidebar_border_color: '',
-                    sidebar_fill_color: '',
-                    text_color: ''
-                };
-            } else {
-
-                // Active user
-
-                var profile_user = JSON.parse(dom.window.document.getElementById('init-data').value).profile_user
+                // Active Account 
+                var profile_user = body[0];
 
 
-                var tweets_str    = formatNum(profile_user.statuses_count);
-                var following_str = formatNum(profile_user.friends_count);
-                var followers_str = formatNum(profile_user.followers_count);
-                var likes_str 	  = formatNum(profile_user.favourites_count);
+                var tweets_str   	= formatNum(profile_user.statuses_count);
+                var following_str	= formatNum(profile_user.friends_count);
+                var followers_str 	= formatNum(profile_user.followers_count);
+                var likes_str 	  	= formatNum(profile_user.favourites_count);
+                var media_count_str	= formatNum(profile_user.media_count);
+
 
                 var twitter = {
                     available: 1,
                     suspended: 0,
                     user_id: 	profile_user.id,
+                    user_id_str: 	profile_user.id_str,
                     name: 		profile_user.name,
                     account: 	profile_user.screen_name,
                     verified: 		profile_user.verified,
@@ -261,6 +238,8 @@ app.get('/twitter/api/:name', function (req, res) {
                     followers_str: 	followers_str,
                     likes: 			profile_user.favourites_count,
                     likes_str: 		likes_str,
+                    media_count: 	profile_user.media_count,
+                    media_count_str:media_count_str,
                     avatar: 		profile_user.profile_image_url.replace("_normal", "_400x400"),
                     banner: 				profile_user.profile_banner_url,
                     background_image: 		profile_user.profile_background_image_url,
@@ -270,8 +249,10 @@ app.get('/twitter/api/:name', function (req, res) {
                     sidebar_fill_color: 	profile_user.profile_sidebar_fill_color,
                     text_color: 			profile_user.profile_text_color
                 }
-            }
-            ;
+
+
+
+
             console.log(twitter);
             res.send(twitter)
         }
@@ -285,8 +266,9 @@ app.get('/twitter/api/:name', function (req, res) {
                 available: 0,
                 suspended: 0,
                 user_id: '',
-                name: '',
-                account: req.params.name.toLowerCase().split(' ').join(''),
+                user_id_str: '',
+                name: 'Not Found',
+                account: name),
                 verified: '',
                 Bussnis_state: '',
                 joined: '',
@@ -301,7 +283,9 @@ app.get('/twitter/api/:name', function (req, res) {
                 followers_str: '',
                 likes: '',
                 likes_str: '',
-                avatar: '',
+                media_count: '',
+                media_count_str: '',
+                avatar: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/-_aKpGQt_400x400.jpg',
                 banner: '',
                 background_image: '',
                 background_color: '',
@@ -310,6 +294,7 @@ app.get('/twitter/api/:name', function (req, res) {
                 sidebar_fill_color: '',
                 text_color: ''
             };
+			
             console.log(twitter)
             res.send(twitter)
 
