@@ -415,6 +415,16 @@ form fieldset a:hover { text-decoration: underline; }
 }*/
 
 
+/* disable text selection */ 
+html{
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
 
 </style>
 
@@ -460,6 +470,7 @@ form fieldset a:hover { text-decoration: underline; }
 
 	</div> <!-- end Container -->
 
+
 	<script>
 		function search() {
 			var Username = document.getElementsByClassName('Username')[0].value.split(' ').join('');
@@ -469,6 +480,11 @@ form fieldset a:hover { text-decoration: underline; }
 			location.href = location.origin + '/twitter/' + Username.toLowerCase();
 		} else { swal('Oops', 'Something went wrong!', 'error') }
 		}
+	</script>
+	
+	<script>
+		// disable right click 
+		document.addEventListener('contextmenu', event => event.preventDefault());
 	</script>
 
 
