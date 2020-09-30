@@ -1,50 +1,21 @@
-////////////////////////////////////////////
-// https://github.com/puppeteer/puppeteer
-// https://try-puppeteer.appspot.com/
-const puppeteer = require('puppeteer');
-const fs		= require('fs');
-const request	= require('request');
-const express	= require('express');
-const app 		= express();
+var express = require('express');
+var app = express();
+var request = require('request');
 // =====================================================
 
 // Settings --------------------------------------------
 // app.listen(80);
 // app.listen(process.env.PORT);
 // app.listen(process.env.PORT || 80);
-const port = process.env.PORT || 80;
+var port = process.env.PORT || 80;
 app.listen(port)
 app.set('view engine', 'ejs');
 console.log('Server is running on port ' + port);
+//
 
 // Static Pages -----------------------------------------
 app.use('/twitter/img', express.static(__dirname + '/pages/twitter/img'));
 app.use('/img', express.static(__dirname + '/pages/twitter/img'));
-
-
-
-// Twitter Cookies scraper
-async function cookies(){
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto('https://twitter.com');
-
-  // get cookie
-  const cookie = await page.evaluate(() => {
-    return document.cookie.split('gt=')[1].split(';')[0];
-  });
-  console.log('New Cookie : ' + cookie)
-
-  await browser.close();
-  return cookie
-}
-
-setInterval(()=>{
-	cookies().then(cookie => {
-		fs.writeFileSync('./cookie.txt', cookie)
-	})
-},1000*60*10)
-
 
 
 
@@ -69,7 +40,7 @@ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
 
 
-//  Online / 404  Page -------------------------------------
+//  404  Page -------------------------------------
 //  Home Page -------------------------------------
 app.get('/', function (req, res) {
     console.log('Home Page : ' + req.url)
@@ -80,7 +51,6 @@ app.get('/', function (req, res) {
 // Twitter Home Page ------------------------------------------------------------
 app.get('/twitter', function (req, res) {
     console.log('Twitter Main Page : ' + req.url)
-	cookies().then(cookie => {fs.writeFileSync('./cookie.txt', cookie)}) // Extract a new Cookie
     res.sendFile(__dirname + '/pages/twitter/twitter.html')
 })
 
@@ -88,7 +58,6 @@ app.get('/twitter', function (req, res) {
 
 //  Twitter Profile  Page -------------------------------------
 app.get('/twitter/:name', function (req, res) {
-	var cookie = fs.readFileSync('./cookie.txt');
     var name = req.params.name;
     console.log('Search Name : ' + name);
 // make GET request to twitter
@@ -99,8 +68,9 @@ app.get('/twitter/:name', function (req, res) {
 		json: true,
 		url: 'https://api.twitter.com/1.1/users/search.json?q=' + name,
 		'headers': {
-			'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
-			'x-guest-token': cookie
+			'x-csrf-token': ' 2549ce8ff29dcf107227daad84705cbca4f25413fbf034487e4aac1fb6fb75a7fc2a14883fab4b440146f1995a431e9a533a18b38692bea399b622cb3fdf2b5b9d2ae86737fe4f1f8fd482768e0f3bb3',
+			'authorization': ' Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
+			'Cookie': ' personalization_id="v1_uNY+hCALY/9VHLheaM8lQQ=="; guest_id=v1%3A154719727239623211; _ga=GA1.2.1129466888.1547197284; external_referer=padhuUp37zjgzgv1mFWxJ12Ozwit7owX|0|8e8t2xd8A2w%3D; ads_prefs="HBERAAA="; kdt=DwtbwLnzjCuFQdVdFxv1QGcUJSxswEkjLyEvey6m; remember_checked_on=1; twid=u%3D32936928; auth_token=d6d832522eca0ce548756e37dc5a38b5d5037036; _twitter_sess=BAh7CiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%250ASGFzaHsABjoKQHVzZWR7ADoPY3JlYXRlZF9hdGwrCPLvPeVoAToMY3NyZl9p%250AZCIlYTIyYzAxNDVmNGY1YWI3NDBlYjNhOGY1ZTJiOGExZDU6B2lkIiU5Y2Q4%250ANWU5YWZlMTY3NDIyYmFmOTNlNTUzZTJkNDZiZDoJdXNlcmkE4JP2AQ%253D%253D--a15a8ca584044d759d0d58f6238a8c36763d8229; ct0=2549ce8ff29dcf107227daad84705cbca4f25413fbf034487e4aac1fb6fb75a7fc2a14883fab4b440146f1995a431e9a533a18b38692bea399b622cb3fdf2b5b9d2ae86737fe4f1f8fd482768e0f3bb3; _gid=GA1.2.1231935430.1601398684; des_opt_in=N; eu_cn=; personalization_id="v1_xESmeH0ZEMpY5JQt/jJ+3Q=="; guest_id=v1%3A160141294769048221; lang=en'
 		}
 	};
     // Start the request
@@ -219,7 +189,6 @@ app.get('/twitter/:name', function (req, res) {
 // ===================================================================================================================
 //  Twitter api ------------------------------------------------------------------------------------------------------
 app.get('/twitter/api/:name', function (req, res) {
-	var cookie = fs.readFileSync('./cookie.txt');
     var name = req.params.name;
     console.log('Search Name : ' + name);
 // make GET request to twitter
@@ -230,8 +199,9 @@ app.get('/twitter/api/:name', function (req, res) {
 		json: true,
 		url: 'https://api.twitter.com/1.1/users/search.json?q=' + name,
 		'headers': {
-			'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
-			'x-guest-token': cookie
+			'x-csrf-token': ' 2549ce8ff29dcf107227daad84705cbca4f25413fbf034487e4aac1fb6fb75a7fc2a14883fab4b440146f1995a431e9a533a18b38692bea399b622cb3fdf2b5b9d2ae86737fe4f1f8fd482768e0f3bb3',
+			'authorization': ' Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
+			'Cookie': ' personalization_id="v1_uNY+hCALY/9VHLheaM8lQQ=="; guest_id=v1%3A154719727239623211; _ga=GA1.2.1129466888.1547197284; external_referer=padhuUp37zjgzgv1mFWxJ12Ozwit7owX|0|8e8t2xd8A2w%3D; ads_prefs="HBERAAA="; kdt=DwtbwLnzjCuFQdVdFxv1QGcUJSxswEkjLyEvey6m; remember_checked_on=1; twid=u%3D32936928; auth_token=d6d832522eca0ce548756e37dc5a38b5d5037036; _twitter_sess=BAh7CiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo%250ASGFzaHsABjoKQHVzZWR7ADoPY3JlYXRlZF9hdGwrCPLvPeVoAToMY3NyZl9p%250AZCIlYTIyYzAxNDVmNGY1YWI3NDBlYjNhOGY1ZTJiOGExZDU6B2lkIiU5Y2Q4%250ANWU5YWZlMTY3NDIyYmFmOTNlNTUzZTJkNDZiZDoJdXNlcmkE4JP2AQ%253D%253D--a15a8ca584044d759d0d58f6238a8c36763d8229; ct0=2549ce8ff29dcf107227daad84705cbca4f25413fbf034487e4aac1fb6fb75a7fc2a14883fab4b440146f1995a431e9a533a18b38692bea399b622cb3fdf2b5b9d2ae86737fe4f1f8fd482768e0f3bb3; _gid=GA1.2.1231935430.1601398684; des_opt_in=N; eu_cn=; personalization_id="v1_xESmeH0ZEMpY5JQt/jJ+3Q=="; guest_id=v1%3A160141294769048221; lang=en'
 		}
 	};
     // Start the request
