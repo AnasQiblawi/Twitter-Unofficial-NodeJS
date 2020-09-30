@@ -32,19 +32,19 @@ async function cookies(){
 
   // get cookie
   const cookie = await page.evaluate(() => {
+	  console.log(document.cookie)
     return document.cookie.split('gt=')[1].split(';')[0];
   });
   console.log('New Cookie : ' + cookie)
+  fs.writeFileSync('./cookie.txt', cookie)
 
   await browser.close();
-  return cookie
+  //return cookie
 }
 
 setInterval(()=>{
-	cookies().then(cookie => {
-		fs.writeFileSync('./cookie.txt', cookie)
-	})
-},1000*60*10)
+	cookies()
+},1000*60*5)
 
 
 
@@ -81,7 +81,7 @@ app.get('/', function (req, res) {
 // Twitter Home Page ------------------------------------------------------------
 app.get('/twitter', function (req, res) {
     console.log('Twitter Main Page : ' + req.url)
-	cookies().then(cookie => {fs.writeFileSync('./cookie.txt', cookie)}) // Extract a new Cookie
+	cookies() // Extract a new Cookie
     res.sendFile(__dirname + '/pages/twitter/twitter.html')
 })
 
