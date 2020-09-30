@@ -1,6 +1,6 @@
 ////////////////////////////////////////////
 // https://github.com/puppeteer/puppeteer
-// https://try-puppeteer.appspot.com
+// https://try-puppeteer.appspot.com/
 const fs		= require('fs');
 const request	= require('request');
 const express	= require('express');
@@ -35,7 +35,7 @@ var options = {
 };
 request(options, function (error, response, body) {
   if (!error) {
-  console.log(JSON.parse(body)['log']);
+  console.log('New Cookie : ' + JSON.parse(body)['log']);
   callback(JSON.parse(body)['log'])
   }
 });
