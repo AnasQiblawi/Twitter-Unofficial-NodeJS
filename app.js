@@ -35,17 +35,12 @@ var options = {
 };
 request(options, function (error, response, body) {
   if (!error) {
-  console.log('New Cookie : ' + JSON.parse(body)['log']);
-  callback(JSON.parse(body)['log'])
+	var cookie = JSON.parse(body)['log'];
+	//console.log('New Cookie : ' + cookie);
+	callback(cookie)
   }
 });
 }
-
-setInterval(()=>{
-	cookies(cookie => {
-		fs.writeFileSync('./cookie.txt', cookie)
-	})
-},1000*60*10)
 
 
 
@@ -82,7 +77,6 @@ app.get('/', function (req, res) {
 // Twitter Home Page ------------------------------------------------------------
 app.get('/twitter', function (req, res) {
     console.log('Twitter Main Page : ' + req.url)
-	cookies(cookie => {fs.writeFileSync('./cookie.txt', cookie)}) // Extract a new Cookie
     res.sendFile(__dirname + '/pages/twitter/twitter.html')
 })
 
@@ -90,7 +84,7 @@ app.get('/twitter', function (req, res) {
 
 //  Twitter Profile  Page -------------------------------------
 app.get('/twitter/:name', function (req, res) {
-	var cookie = fs.readFileSync('./cookie.txt');
+	cookies(cookie => {
     var name = req.params.name;
     console.log('Search Name : ' + name);
 // make GET request to twitter
@@ -204,7 +198,7 @@ app.get('/twitter/:name', function (req, res) {
         }
     })
 
-
+})
 })
 
 
@@ -221,7 +215,7 @@ app.get('/twitter/:name', function (req, res) {
 // ===================================================================================================================
 //  Twitter api ------------------------------------------------------------------------------------------------------
 app.get('/twitter/api/:name', function (req, res) {
-	var cookie = fs.readFileSync('./cookie.txt');
+	cookies(cookie => {
     var name = req.params.name;
     console.log('Search Name : ' + name);
 // make GET request to twitter
@@ -245,7 +239,7 @@ app.get('/twitter/api/:name', function (req, res) {
                 // Active Account 
                 var profile_user = body[0];
 
-
+/* 
                 var tweets_str   	= formatNum(profile_user.statuses_count);
                 var following_str	= formatNum(profile_user.friends_count);
                 var followers_str 	= formatNum(profile_user.followers_count);
@@ -291,13 +285,16 @@ app.get('/twitter/api/:name', function (req, res) {
 
             console.log(twitter);
             res.send(twitter)
+             */
+			res.send(profile_user)
         }
 
 
         // if error = No User Found
+        // if error = No User Found
         else {
             console.log('No Such a User .');
-
+/* 
             var twitter = {
                 available: 0,
                 suspended: 0,
@@ -333,9 +330,12 @@ app.get('/twitter/api/:name', function (req, res) {
 			
             console.log(twitter)
             res.send(twitter)
+			 */
+            res.send(body)
 
         }
     })
 
+})
 })
 
