@@ -1,6 +1,6 @@
 ////////////////////////////////////////////
 // https://github.com/puppeteer/puppeteer
-// https://try-puppeteer.appspot.com/
+// https://try-puppeteer.appspot.com
 const fs		= require('fs');
 const request	= require('request');
 const express	= require('express');
