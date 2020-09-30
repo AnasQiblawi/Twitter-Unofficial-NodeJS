@@ -1,6 +1,7 @@
 ////////////////////////////////////////////
 // https://github.com/puppeteer/puppeteer
 // https://try-puppeteer.appspot.com/
+const puppeteer = require('puppeteer');
 const fs		= require('fs');
 const request	= require('request');
 const express	= require('express');
@@ -23,29 +24,26 @@ app.use('/img', express.static(__dirname + '/pages/twitter/img'));
 
 
 // Twitter Cookies scraper
-async function cookies(callback){
-var options = {
-  method: 'POST',
-  url: 'https://backend-dot-try-puppeteer.appspot.com/run',
-  headers: {
-    'Content-Type': ' multipart/form-data; boundary=---------------------------32154645726455109592732981794'
-  },
-  body: "-----------------------------32154645726455109592732981794\r\nContent-Disposition: form-data;name=\"file\";filename=\"blob\"\r\nContent-Type:text/javascript\r\n\r\nconst browser = await puppeteer.launch();const page = await browser.newPage();await page.goto('http://mobile.twitter.com');const cookies = await page.evaluate(() => {return document.cookie.split('gt=')[1].split(';')[0]});console.log(cookies);await browser.close();\r\n\r\n-----------------------------32154645726455109592732981794--"
+async function cookies(){
+  //const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({'args' : ['--no-sandbox','--disable-setuid-sandbox']});
+  const page = await browser.newPage();
+  await page.goto('http://mobile.twitter.com');
 
-};
-request(options, function (error, response, body) {
-  if (!error) {
-  console.log(JSON.parse(body)['log']);
-  callback(JSON.parse(body)['log'])
-  }
-});
+  // get cookie
+  const cookie = await page.evaluate(() => {
+    return document.cookie
+  });
+  console.log('New Cookie : ' + cookie)
+  fs.writeFileSync('./cookie.txt', cookie)
+
+  await browser.close();
+  //return cookie
 }
 
 setInterval(()=>{
-	cookies(cookie => {
-		fs.writeFileSync('./cookie.txt', cookie)
-	})
-},1000*60*10)
+	cookies()
+},1000*60*5)
 
 
 
@@ -82,7 +80,7 @@ app.get('/', function (req, res) {
 // Twitter Home Page ------------------------------------------------------------
 app.get('/twitter', function (req, res) {
     console.log('Twitter Main Page : ' + req.url)
-	cookies(cookie => {fs.writeFileSync('./cookie.txt', cookie)}) // Extract a new Cookie
+	cookies() // Extract a new Cookie
     res.sendFile(__dirname + '/pages/twitter/twitter.html')
 })
 
