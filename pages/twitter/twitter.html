@@ -473,11 +473,11 @@ html{
 
 	<script>
 		function search() {
-			var Username = document.getElementsByClassName('Username')[0].value.split(' ').join('');
+			var Username = document.getElementsByClassName('Username')[0].value;
 			if (Username != 'Username.' && Username != '' ) {
 			// document.getElementById('loader').innerHTML = '<i class="fa fa-circle-o-notch fa-spin rotar"></i>Loading'
 			document.getElementById('loader').innerHTML = '<span class="loader loader-quart"> </span>'
-			location.href = location.origin + '/twitter/' + Username.toLowerCase();
+			location.href = location.origin + '/twitter/' + Username;
 		} else { swal('Oops', 'Something went wrong!', 'error') }
 		}
 	</script>
