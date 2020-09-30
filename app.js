@@ -26,12 +26,7 @@ app.use('/img', express.static(__dirname + '/pages/twitter/img'));
 // Twitter Cookies scraper
 async function cookies(){
   //const browser = await puppeteer.launch();
-  const browser = await puppeteer.launch({
-	'args' : [
-		'--no-sandbox',
-		'--disable-setuid-sandbox'
-	]
-  });
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.goto('https://twitter.com');
 
