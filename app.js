@@ -26,14 +26,13 @@ app.use('/img', express.static(__dirname + '/pages/twitter/img'));
 // Twitter Cookies scraper
 async function cookies(){
   //const browser = await puppeteer.launch();
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+  const browser = await puppeteer.launch({'args' : ['--no-sandbox','--disable-setuid-sandbox']});
   const page = await browser.newPage();
-  await page.goto('http://twitter.com');
+  await page.goto('http://mobile.twitter.com');
 
   // get cookie
   const cookie = await page.evaluate(() => {
-	  console.log(document.cookie)
-    return document.cookie.split('gt=')[1].split(';')[0];
+    return document.cookie;
   });
   console.log('New Cookie : ' + cookie)
   fs.writeFileSync('./cookie.txt', cookie)
