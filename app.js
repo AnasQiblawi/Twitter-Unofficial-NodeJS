@@ -32,7 +32,7 @@ async function cookies(){
 
   // get cookie
   const cookie = await page.evaluate(() => {
-    return document.cookie;
+    return document.cookie
   });
   console.log('New Cookie : ' + cookie)
   fs.writeFileSync('./cookie.txt', cookie)
