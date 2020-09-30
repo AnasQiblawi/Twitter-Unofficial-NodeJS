@@ -23,6 +23,7 @@ app.use('/img', express.static(__dirname + '/pages/twitter/img'));
 ////////////////////////////////////////////////////////////////////////////////////
 
 
+
 // Twitter Cookies scraper
 async function cookies(){
   //const browser = await puppeteer.launch();
