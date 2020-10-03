@@ -1,5 +1,5 @@
 {
-  "name": "Twita",
+  "name": "Twitter-Unofficial-NodeJS",
   "version": "1.0.0",
   "description": "Get a user information.",
   "main": "app.js",
