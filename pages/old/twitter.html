@@ -1,0 +1,465 @@
+<html>
+
+<!-- https://codepen.io/marcobiedermann/pen/dkEzo -->
+
+
+<head>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+	<title>Twitter</title>
+	<!-- Alert Design -->
+	<script src="https://sweetalert.js.org/assets/sweetalert/sweetalert.min.js"></script>
+
+	<!-- w3school css loading botton -->
+	<!-- https://www.w3schools.com/howto/howto_css_loading_buttons.asp -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- <link rel="stylesheet" href="css/style.css"> -->
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
+
+	<!--[if lt IE 9]>
+		<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+<style>
+	
+@charset "utf-8";
+/* CSS Document */
+
+/* ---------- FONTAWESOME ---------- */
+/* ---------- https://fortawesome.github.com/Font-Awesome/ ---------- */
+/* ---------- http://weloveiconfonts.com/ ---------- */
+
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+/* ---------- ERIC MEYER'S RESET CSS ---------- */
+/* ---------- https://meyerweb.com/eric/tools/css/reset/ ---------- */
+
+@import url(https://meyerweb.com/eric/tools/css/reset/reset.css);
+
+/* ---------- FONTAWESOME ---------- */
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+/* ---------- GENERAL ---------- */
+
+body {
+	background: #f4f4f4;
+	color: #5a5656;
+	font: 100%/1.5em 'Open Sans', sans-serif;
+  margin: 0;
+}
+
+a { text-decoration: none; }
+
+h1 { font-size: 1em; }
+
+h1, p {
+	margin-bottom: 10px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+.uppercase { text-transform: uppercase; }
+
+/* ---------- Container ---------- */
+
+#Container {
+	margin: 15% auto;
+	width: 350px;
+	/*background: lightgray;*/
+    /*border: 1px solid lightgray ;*/
+    border-radius: 7px;
+    max-width: 357px;
+    padding: 12px;
+
+}
+
+form fieldset input[type="text"], input[type="password"], input[type="search"] {
+	background: #e5e5e5;
+	border: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 50px;
+	outline: none;
+	padding: 0px 10px;
+	width: 350px;
+  -webkit-appearance:none;
+}
+
+form fieldset input[type="submit"] {
+	background-color: #008dde;
+	border: none;
+	border-radius: 3px;
+	color: #f4f4f4;
+	cursor: pointer;
+	font-family: inherit;
+	height: 50px;
+	text-transform: uppercase;
+	width: 350px;
+  -webkit-appearance:none;
+    font-size: 14px;
+    letter-spacing: 3px;
+}
+
+form fieldset a {
+	color: #5a5656;
+	font-size: 10px;
+}
+
+form fieldset a:hover { text-decoration: underline; }
+
+.btn-round {
+	background: #5a5656;
+	border-radius: 50%;
+	color: #f4f4f4;
+	display: block;
+	font-size: 12px;
+	height: 50px;
+	line-height: 50px;
+	margin: 30px 125px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 50px;
+}
+
+.facebook-before {
+	background: #0064ab;
+	border-radius: 3px 0px 0px 3px;
+	color: #f4f4f4;
+	display: block;
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	width: 50px;
+}
+
+.facebook {
+	background: #0079ce;
+	border: none;
+	border-radius: 0px 3px 3px 0px;
+	color: #f4f4f4;
+	cursor: pointer;
+	height: 50px;
+	text-transform: uppercase;
+	width: 250px;
+}
+
+.twitter-before {
+	background: #189bcb;
+	border-radius: 3px 0px 0px 3px;
+	color: #f4f4f4;
+	display: block;
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	width: 50px;
+}
+
+
+.twitter {
+	background: #1bb2e9;
+	border: none;
+	border-radius: 0px 3px 3px 0px;
+	color: #f4f4f4;
+	cursor: pointer;
+	height: 50px;
+	text-transform: uppercase;
+	width: 350px;
+}
+
+.rotar {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+</style>
+
+
+<style>/* $Base */
+
+
+.loaders {
+  height: 300px;
+  line-height: 80px;
+  /*background-color: #4EBA6F;*/
+}
+
+.loaders-bg-2 {
+  background-color: #2D95BF;
+}
+
+.loaders-bg-3 {
+  background-color: #F15A5A;
+}
+
+.loaders-bg-4 {
+  background-color: #955BA5;
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+/*	$Loader Quadrant
+	========================================================================== */
+.loader-quart {
+  border-radius: 50px;
+  border: 6px solid rgba(255, 255, 255, 0.4);
+}
+.loader-quart:after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  bottom: -6px;
+  left: -6px;
+  border-radius: 50px;
+  border: 3px solid #cad5d5;
+  border-top-color: #578781;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+/*	$Loader Double circle
+	========================================================================== */
+.loader-double {
+  border-radius: 50px;
+  border: 6px solid transparent;
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+.loader-double:before, .loader-double:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  border-radius: 50px;
+  border: 6px solid transparent;
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-animation: spinreverse 2s linear infinite;
+  animation: spinreverse 2s linear infinite;
+}
+.loader-double:before {
+  top: 15px;
+  left: 15px;
+  bottom: 15px;
+  right: 15px;
+  -webkit-animation: spinreverse 3s linear infinite;
+  animation: spinreverse 3s linear infinite;
+}
+
+/*	$Loader Multiple circle
+	========================================================================== */
+.loader-circles {
+  border-radius: 50px;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+.loader-circles:before, .loader-circles:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  border-radius: 50px;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  -webkit-animation: spinreverse 5s linear infinite;
+  animation: spinreverse 5s linear infinite;
+}
+.loader-circles:before {
+  top: 12px;
+  left: 12px;
+  bottom: 12px;
+  right: 12px;
+  -webkit-animation: spinreverse 10s linear infinite;
+  animation: spinreverse 10s linear infinite;
+}
+
+/*	$Loader Bars
+	========================================================================== */
+.loader-bars:before,
+.loader-bars:after,
+.loader-bars span {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 30px;
+  background-color: #fff;
+  -webkit-animation: grow 1.5s linear infinite;
+  animation: grow 1.5s linear infinite;
+}
+
+.loader-bars:after {
+  left: 15px;
+  -webkit-animation: grow 1.5s linear -0.5s infinite;
+  animation: grow 1.5s linear -0.5s infinite;
+}
+
+.loader-bars span {
+  left: 30px;
+  -webkit-animation: grow 1.5s linear -1s infinite;
+  animation: grow 1.5s linear -1s infinite;
+}
+
+@-webkit-keyframes grow {
+  0% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+@keyframes grow {
+  0% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    tranform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    tranform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    tranform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    tranform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spinreverse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    tranform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    tranform: rotate(-360deg);
+  }
+}
+@keyframes spinreverse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    tranform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    tranform: rotate(-360deg);
+  }
+}
+center {
+	margin-top: 10%;
+}
+</style>
+
+
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+
+	<div id="Container">
+<center>
+		<h1 style="float: left;"><strong>Twitter</strong> api</h1>
+
+		<form action="javascript:void(0);" method="get">
+
+			<fieldset>
+
+				<p><input type="search" required id="Username" value="Username." onBlur="if(this.value.trim()=='')this.value='Username.'" onFocus="if(this.value=='Username.')this.value='' " class=""></p> <!-- JS because of IE support; better: placeholder="Username" -->
+
+
+				<p><input type="submit" id="" onclick="search()" value="Search" class="" ></p>
+</center>
+				<center id='loader' class='center' >
+
+				<p id="loader" class="buttonload">
+ 				 
+				</p>
+				</center>
+
+			</fieldset>
+
+		</form>
+
+	</div> <!-- end Container -->
+
+	<script>
+		function search() {
+			var Username = document.getElementById('Username').value.split(' ').join('');
+			if (Username != 'Username.' && Username != '' ) {
+			// document.getElementById('loader').innerHTML = '<i class="fa fa-circle-o-notch fa-spin rotar"></i>Loading'
+			document.getElementById('loader').innerHTML = '<section class="loaders"><span class="loader loader-quart"> </span> </section>'
+			location.href = location.origin + '/twitter/' + Username.toLowerCase();
+		} else { swal('Oops', 'Something went wrong!', 'error') }
+		}
+	</script>
+
+</body>
+</html>
