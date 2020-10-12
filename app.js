@@ -30,7 +30,7 @@ var options = {
   headers: {
     'Content-Type': ' multipart/form-data; boundary=---------------------------32154645726455109592732981794'
   },
-  body: "-----------------------------32154645726455109592732981794\r\nContent-Disposition: form-data;name=\"file\";filename=\"blob\"\r\nContent-Type:text/javascript\r\n\r\nconst browser = await puppeteer.launch();const page = await browser.newPage();await page.goto('http://mobile.twitter.com');const cookies = await page.evaluate(() => {return document.cookie.split('gt=')[1].split(';')[0]});console.log(cookies);await browser.close();\r\n\r\n-----------------------------32154645726455109592732981794--"
+  body: "-----------------------------32154645726455109592732981794\r\nContent-Disposition: form-data;name=\"file\";filename=\"blob\"\r\nContent-Type:text/javascript\r\n\r\nconst browser = await puppeteer.launch({headless:true});const page = await browser.newPage();await page.goto('http://mobile.twitter.com', {waitUntil: 'domcontentloaded'});const cookies = await page.evaluate(() => {return document.cookie.split('gt=')[1].split(';')[0]});console.log(cookies);await browser.close();\r\n\r\n-----------------------------32154645726455109592732981794--"
 
 };
 request(options, function (error, response, body) {
