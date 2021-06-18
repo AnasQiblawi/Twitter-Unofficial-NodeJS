@@ -1,6 +1,4 @@
 ////////////////////////////////////////////
-// https://github.com/puppeteer/puppeteer
-// https://try-puppeteer.appspot.com/
 const fs		= require('fs');
 const request	= require('request');
 const express	= require('express');
@@ -81,7 +79,7 @@ app.get('/user/:name', function (req, res) {
 	var options = {
 		method: 'GET',
 		json: true,
-		url: 'https://api.twitter.com/1.1/users/search.json?q=' + name,
+		url: 'https://api.twitter.com/1.1/users/lookup.json?screen_name=' + name,
 		'headers': {
 			'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
 			'x-guest-token': token
@@ -212,7 +210,7 @@ app.get('/api/:name', function (req, res) {
 	var options = {
 		method: 'GET',
 		json: true,
-		url: 'https://api.twitter.com/1.1/users/search.json?q=' + name,
+		url: 'https://api.twitter.com/1.1/users/lookup.json?screen_name=' + name,
 		'headers': {
 			'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
 			'x-guest-token': token
