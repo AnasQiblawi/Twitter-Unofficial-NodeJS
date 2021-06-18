@@ -26,16 +26,14 @@ app.use('/img', express.static(__dirname + '/pages/img'));
 async function token(callback){
 var options = {
   method: 'POST',
-  url: 'https://backend-dot-try-puppeteer.appspot.com/run',
+  url: 'https://api.twitter.com/1.1/guest/activate.json',
   headers: {
-    'Content-Type': ' multipart/form-data; boundary=---------------------------32154645726455109592732981794'
-  },
-  body: "-----------------------------32154645726455109592732981794\r\nContent-Disposition: form-data;name=\"file\";filename=\"blob\"\r\nContent-Type:text/javascript\r\n\r\nconst browser = await puppeteer.launch({headless:true});const page = await browser.newPage();await page.goto('http://mobile.twitter.com', {waitUntil: 'domcontentloaded'});const cookies = await page.evaluate(() => {return document.cookie.split('gt=')[1].split(';')[0]});console.log(cookies);await browser.close();\r\n\r\n-----------------------------32154645726455109592732981794--"
-
+	  authorization: "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
+  }
 };
 request(options, function (error, response, body) {
   if (!error) {
-	var token = JSON.parse(body)['log'];
+	var token = JSON.parse(body).guest_token;
 	//console.log('New token : ' + token);
 	callback(token)
   }
