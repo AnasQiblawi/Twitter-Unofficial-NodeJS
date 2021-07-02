@@ -17,11 +17,14 @@ console.log('Server is running on port ' + port);
 app.use('/img', express.static(__dirname + '/pages/img'));
 ////////////////////////////////////////////////////////////////////////////////////
 
-
+var api = {
+	lookup:	"https://api.twitter.com/1.1/users/lookup.json?screen_name=",
+	search:	"https://api.twitter.com/1.1/users/search.json?count=1&q="
+}
 
 
 // Twitter Token
-async function token(callback){
+async function twitter_token(callback){
 var options = {
   method: 'POST',
   url: 'https://api.twitter.com/1.1/guest/activate.json',
@@ -69,18 +72,19 @@ app.get('/', function (req, res) {
 
 
 //  Profile  Page -------------------------------------
-app.get('/user/:name', function (req, res) {
-	token(token => {
-    var name = req.params.name;
-    console.log('Search Name : ' + name);
+app.get('/:method/:user', function (req, res) {
+	twitter_token(token => {
+    let method = req.params.method;
+    let user = req.params.user.toLowerCase().split(' ').join('');
+    console.log('Search Name : ' + user);
 // make GET request to twitter
 
     // Configure the request
 	var options = {
 		method: 'GET',
 		json: true,
-		url: 'https://api.twitter.com/1.1/users/lookup.json?screen_name=' + name,
-		'headers': {
+		url: (method == 'lookup' ? api.lookup : api.search) + user,
+		headers: {
 			'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
 			'x-guest-token': token
 		}
@@ -153,7 +157,7 @@ app.get('/user/:name', function (req, res) {
                 user_id: '',
                 user_id_str: '',
                 name: 'Not Found',
-                account: req.params.name.toLowerCase().split(' ').join(''),
+                account: user,
                 verified: '',
                 Bussnis_state: '',
                 joined: '',
@@ -200,17 +204,17 @@ app.get('/user/:name', function (req, res) {
 
 // ===================================================================================================================
 //  Twitter api ------------------------------------------------------------------------------------------------------
-app.get('/api/:name', function (req, res) {
-	token(token => {
-    var name = req.params.name;
-    console.log('Search Name : ' + name);
+app.get('/api/:user', function (req, res) {
+	twitter_token(token => {
+    var user = req.params.user;
+    console.log('Search Name : ' + user);
 // make GET request to twitter
 
     // Configure the request
 	var options = {
 		method: 'GET',
 		json: true,
-		url: 'https://api.twitter.com/1.1/users/lookup.json?screen_name=' + name,
+		url: 'https://api.twitter.com/1.1/users/lookup.json?screen_name=' + user,
 		'headers': {
 			'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
 			'x-guest-token': token
@@ -242,7 +246,7 @@ app.get('/api/:name', function (req, res) {
 
 // Twitter headers
 app.get('/headers', (req, res) => {
-	token(token => {
+	twitter_token(token => {
 		res.send({
 			'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
 			'x-guest-token': token

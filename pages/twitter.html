@@ -106,7 +106,7 @@ form fieldset input[type="submit"] {
 	font-family: inherit;
 	height: 50px;
 	text-transform: uppercase;
-	width: 350px;
+	width: 170px;
   -webkit-appearance:none;
     font-size: 14px;
     letter-spacing: 3px;
@@ -458,8 +458,10 @@ body {
 
 				<p><input type="search" required class="Username" value="Username." onBlur="if(this.value.trim()=='')this.value='Username.'" onFocus="if(this.value=='Username.')this.value='' " class=""></p> <!-- JS because of IE support; better: placeholder="Username" -->
 
-
-				<p><input type="submit" id="" onclick="search()" value="Search" class="" ></p>
+				<div style="display:grid; grid-template-columns: auto auto ;">
+				<p><input type="submit" id="" onclick="get_user('lookup')" value="Look Up" class=""  ></p>
+				<p><input type="submit" id="" onclick="get_user('search')" value="Search" class=""  ></p>
+				</div>
 
 				</center>
 
@@ -476,12 +478,12 @@ body {
 
 
 	<script>
-		function search() {
+		function get_user(api_method) {
 			var Username = document.getElementsByClassName('Username')[0].value;
 			if (Username != 'Username.' && Username != '' ) {
 			// document.getElementById('loader').innerHTML = '<i class="fa fa-circle-o-notch fa-spin rotar"></i>Loading'
 			document.getElementById('loader').innerHTML = '<span class="loader loader-quart"> </span>'
-			location.href = location.origin + '/user/' + Username;
+			location.href = location.origin + (api_method == 'lookup' ? '/lookup/' : '/search/') + Username;
 		} else { swal('Oops', 'Something went wrong!', 'error') }
 		}
 	</script>
