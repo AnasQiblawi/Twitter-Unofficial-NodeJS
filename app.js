@@ -73,11 +73,11 @@ app.get('/', function (req, res) {
 
 
 //  Profile  Page -------------------------------------
-app.get('/lookup/:user', profile );	// lookup
-app.get('/search/:user', profile );	// search
-function profile(req, res) {
+app.get('/lookup/:user', (req, res) => profile(req, res, 'lookup') );	// lookup
+app.get('/search/:user', (req, res) => profile(req, res, 'search') );	// search
+function profile(req, res, method) {
 	twitter_token(token => {
-    let method = req.params.method;
+    //let method = req.params.method;
     let user = req.params.user.toLowerCase().split(' ').join('');
     console.log('Search Name : ' + user);
 // make GET request to twitter
