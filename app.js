@@ -18,6 +18,7 @@ app.use('/img', express.static(__dirname + '/pages/img'));
 ////////////////////////////////////////////////////////////////////////////////////
 
 var api = {
+	token:	"https://api.twitter.com/1.1/guest/activate.json",
 	lookup:	"https://api.twitter.com/1.1/users/lookup.json?screen_name=",
 	search:	"https://api.twitter.com/1.1/users/search.json?count=1&q="
 }
@@ -27,7 +28,7 @@ var api = {
 async function twitter_token(callback){
 var options = {
   method: 'POST',
-  url: 'https://api.twitter.com/1.1/guest/activate.json',
+  url: api.token,
   headers: {
 	  authorization: "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
   }
@@ -72,7 +73,9 @@ app.get('/', function (req, res) {
 
 
 //  Profile  Page -------------------------------------
-app.get('/:method/:user', function (req, res) {
+app.get('/lookup/:user', profile );	// lookup
+app.get('/search/:user', profile );	// search
+function profile(req, res) {
 	twitter_token(token => {
     let method = req.params.method;
     let user = req.params.user.toLowerCase().split(' ').join('');
@@ -189,7 +192,7 @@ app.get('/:method/:user', function (req, res) {
     })
 
 })
-})
+}
 
 
 
@@ -244,7 +247,7 @@ app.get('/api/:user', function (req, res) {
 
 
 
-// Twitter headers
+// Twitter headers ---------------------------------------------------------------------------------------------------
 app.get('/headers', (req, res) => {
 	twitter_token(token => {
 		res.send({
