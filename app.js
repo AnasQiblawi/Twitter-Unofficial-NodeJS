@@ -196,19 +196,6 @@ function profile(req, res, method) {
 
 
 
-// 404 Page ------------------------------------------------------------
-// Redirect all unknown requests to the main page
-app.get('*', function (req, res) {
-    console.log('404 Request')
-    res.redirect('/')
-})
-
-
-
-
-
-
-
 
 
 // ===================================================================================================================
@@ -263,3 +250,12 @@ app.get('/headers', (req, res) => {
 	})
 })
 
+
+
+
+// 404 Page ------------------------------------------------------------
+// Redirect all unknown requests to the main page
+app.get('*', function (req, res) {
+    console.log('404 Request')
+    res.redirect('/')
+})
