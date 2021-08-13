@@ -72,7 +72,7 @@ app.get('/', function (req, res) {
 
 
 
-//  Profile  Page -------------------------------------
+//  Profile  Page --------------------------------------------------------
 app.get('/lookup/:user', (req, res) => profile(req, res, 'lookup') );	// lookup
 app.get('/search/:user', (req, res) => profile(req, res, 'search') );	// search
 function profile(req, res, method) {
@@ -195,6 +195,13 @@ function profile(req, res, method) {
 
 
 
+
+// 404 Page ------------------------------------------------------------
+// Redirect all unknown requests to the main page
+app.get('*', function (req, res) {
+    console.log('404 Request')
+    res.redirect('/')
+})
 
 
 
