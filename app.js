@@ -77,7 +77,6 @@ app.get('/lookup/:user', (req, res) => profile(req, res, 'lookup') );	// lookup
 app.get('/search/:user', (req, res) => profile(req, res, 'search') );	// search
 function profile(req, res, method) {
 	twitter_token(token => {
-    //let method = req.params.method;
     let user = req.params.user.toLowerCase().split(' ').join('');
     console.log('Search Name : ' + user);
 // make GET request to twitter
@@ -86,7 +85,7 @@ function profile(req, res, method) {
 	var options = {
 		method: 'GET',
 		json: true,
-		url: (method == 'lookup' ? api.lookup : api.search) + user,
+		url: api[method] + user,
 		headers: {
 			'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
 			'x-guest-token': token
