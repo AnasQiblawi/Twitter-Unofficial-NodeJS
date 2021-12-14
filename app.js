@@ -210,7 +210,7 @@ app.get('/api/:user', function (req, res) {
 	var options = {
 		method: 'GET',
 		json: true,
-		url: 'https://api.twitter.com/1.1/users/lookup.json?screen_name=' + user,
+		url: api.lookup + user,
 		'headers': {
 			'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
 			'x-guest-token': token
