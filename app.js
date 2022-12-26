@@ -3,7 +3,30 @@ const fs		= require('fs');
 const request	= require('request');
 const express	= require('express');
 const app 		= express();
+const compression = require('express-compression')
 // =====================================================
+
+
+// Compression -----------------------------------------
+// https://tools.keycdn.com/brotli-test
+app.use(compression({ 
+    filter: shouldCompress, 
+    brotli: { // use Brotli compression
+        enabled: true, 
+        zlib: {} 
+    } 
+}))
+// Don't always compress.
+function shouldCompress(req, res) {
+    if (req.headers['x-no-compression']) {
+        // don't compress responses with this request header
+        return false
+    }
+    // fallback to standard filter function
+    // return compression.filter(req, res)
+    return true;
+}
+
 
 // Settings --------------------------------------------
 // app.listen(80);
