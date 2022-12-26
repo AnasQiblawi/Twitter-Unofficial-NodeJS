@@ -274,6 +274,15 @@ app.get('/headers', (req, res) => {
 })
 
 
+// robots.txt
+app.get('/robots.txt', (req, res) => {
+    res.send(`
+    User-agent: *
+    Allow: /
+    # Disallow: /
+    `);
+});
+
 
 
 // 404 Page ------------------------------------------------------------
