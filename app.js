@@ -94,7 +94,7 @@ function formatNum(num, decimals = 1) {
     const dm = decimals < 0 ? 0 : decimals;
     const symbol = ['', 'K', 'M', 'B', 'T', 'P', 'E', 'Sextillion', 'Septillion', 'Octillion', 'Nonillion', 'Decillion', 'Undecillion', 'Duodecillion', 'Tredecillion', 'Quattuordecillion', 'Quindecillion', 'Sedecillion', 'Septendecillion', 'Octodecillion', 'Novendecillion', 'Vigintillion'];
     const i = Math.floor(Math.log(num) / Math.log(k));
-    return `${parseFloat((num / Math.pow(k, i)).toFixed(dm))} ${symbol[i] || '^'+i}`;
+    return `${parseFloat((num / Math.pow(k, i)).toFixed(dm))} ${symbol[i]}`;
 };
 
 
